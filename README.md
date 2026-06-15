@@ -4,30 +4,20 @@ Personal dotfiles for Linux and macOS.
 
 ## Installing
 
-Get the source code using `git`.
-
 ```console
-git clone --recursive https://github.com/gregfolker/dotfiles ~/.dotfiles
+bash <(curl https://raw.githubusercontent.com/gregfolker/dotfiles/main/bootstrap.sh -sSf)
 ```
 
-If the target host doesn't have `git`, you can use `curl` instead.
+To choose where the dotfiles get cloned, prepend `CLONE_DIR` to the start of the command.
 
 ```console
-mkdir -p ~/.dotfiles \
-    && cd ~/.dotfiles \
-    && curl -L -O https://github.com/gregfolker/dotfiles/archive/main.tar.gz \
-    && tar -zxf main.tar.gz -directory . --strip-components=1 \
-    && rm main.tar.gz
+CLONE_DIR=/path/to/dotfiles bash <(curl https://raw.githubusercontent.com/gregfolker/dotfiles/main/bootstrap.sh -sSf)
 ```
 
-Use `make` to setup symlinks from `$HOME` to where the source code was placed.
-
-```console
-cd ~/.dotfiles && make install
-```
-
-Change `~/.dotfiles` to where the dotfiles were cloned if it was different.
+The default location is `~/.dotfiles`. Add the `--help` flag to the above command to get more
+details about what will be installed on the host.
 
 > [!WARNING]
-> `make install` is a destructive action. Please ensure files have been backed up prior
-> to running this if you want the previous configuration saved.
+> This is a destructive action. Please ensure files have been backed up prior
+> to running this if you want the previous configuration saved. You will not
+> be prompted y/N before files are overwritten.

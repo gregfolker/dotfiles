@@ -1,19 +1,41 @@
 SHELL := /usr/bin/env bash
 
-.PHONY: install clean help
-
 .DEFAULT_GOAL := help
 
+.PHONY: help
 help: ## List available targets (Default)
 	@echo "Available targets:"
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
 		| sort \
 		| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-DOTFILE_LIST ?= $(shell find $(CURDIR) -type f -name ".*" -maxdepth 1 -not -name ".gitignore")
+DOCKER_FLAGS := --rm --interactive
+INTERACTIVE := $(shell [ -t 0 ] && echo 1 || echo 0)
+ifeq ($(INTERACTIVE), 1)
+	# Allocate a TTY for interactive sessions so the user can abort if needed
+	DOCKER_FLAGS += --tty
+endif
 
-install: ## Install dotfiles to $HOME
-	@for dotfile in $(DOTFILE_LIST); do ln -svF $$dotfile ~/$$(basename $$dotfile); done;
+.PHONY: test
+test: lint shellcheck ## Run linters and shellcheck
 
-clean: ## Uninstall dotfiles from $HOME
-	@for dotfile in $(DOTFILE_LIST); do unlink -- ~/$$(basename $$dotfile); done;
+.PHONY: lint
+lint: shfmt yamllint ## Run linters
+
+.PHONY: shfmt
+shfmt: ## Run shfmt on shell scripts
+	docker run $(DOCKER_FLAGS) \
+		-v "${PWD}:/mnt" --workdir /mnt \
+		mvdan/shfmt:latest --diff --simplify --write bootstrap.sh
+
+.PHONY: yamllint
+yamllint: ## Run yamllint on YAML files
+	docker run $(DOCKER_FLAGS) \
+		-v "${PWD}:/mnt:ro" --workdir /mnt \
+		cytopia/yamllint:latest .
+
+.PHONY: shellcheck
+shellcheck: ## Run shellcheck on shell scripts
+	docker run $(DOCKER_FLAGS) \
+		-v "${PWD}:/mnt:ro" --workdir /mnt \
+		koalaman/shellcheck:latest bootstrap.sh
