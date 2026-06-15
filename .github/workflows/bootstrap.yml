@@ -1,0 +1,16 @@
+---
+name: bootstrap
+on: [push]  # yamllint disable-line rule:truthy
+jobs:
+  bootstrap:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macOS-15, macOS-26, ubuntu-latest]
+    steps:
+      - name: Install dotfiles
+        # yamllint disable rule:line-length
+        run: |
+          uname -a
+          GIT_BRANCH=$GITHUB_REF_NAME bash <(curl -fsSfL "https://raw.githubusercontent.com/gregfolker/dotfiles/$GITHUB_SHA/bootstrap.sh")
+        shell: bash

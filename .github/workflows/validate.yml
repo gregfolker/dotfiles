@@ -1,0 +1,17 @@
+---
+name: Validate
+on: [push]  # yamllint disable-line rule:truthy
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v6
+      - name: Run linters
+        run: |
+          make lint
+        shell: bash
+      - name: Run shellcheck
+        run: |
+          make shellcheck
+        shell: bash
