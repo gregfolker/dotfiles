@@ -39,6 +39,7 @@ Default packages to be installed via brew: ${BREW_PKGS[@]}
 Options:
     -h, --help          Show this help message and exit.
     -v, --verbose       Enable verbose logging.
+    -m, --minimal       Perform a minimal install.
 EOF
 }
 
@@ -118,6 +119,7 @@ function create_symlinks() {
 }
 
 function main() {
+	local minimal=
 	while [[ $# -gt 0 && $1 =~ ^- && $1 != "--" ]]; do
 		case $1 in
 		-h | --help)
@@ -127,6 +129,9 @@ function main() {
 		-v | --verbose)
 			set -o xtrace
 			export PS4='+ ${BASH_SOURCE:-}:${FUNCNAME[0]:-}:L${LINENO:-}: '
+			;;
+		-m | --minimal)
+			minimal=1
 			;;
 		*)
 			echo "Unknown option: $1"
@@ -149,6 +154,13 @@ function main() {
 
 	echo "Downloading dotfiles..."
 	download_dotfiles
+
+	if command -v brew >/dev/null; then
+		if [ -z "$minimal" ]; then
+			echo "Installing goodies..."
+			brew bundle --file="$CLONE_DIR/Brewfile"
+		fi
+	fi
 
 	echo "Creating symlinks..."
 	create_symlinks
