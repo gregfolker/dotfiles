@@ -116,6 +116,27 @@ function create_symlinks() {
 		fi
 		ln -svF "$src" "$dst"
 	done < <(find "$CLONE_DIR" -maxdepth 1 -name ".*" -type f -not -name ".gitignore" -not -name ".mdl*" -print0)
+
+	if command -v git >/dev/null; then
+		if [ ! -f ~/.gitconfig.user ]; then
+			local git_user_name=
+			local git_user_email=
+			if [[ -t 0 ]]; then
+				read -rp "Enter your name for git commits: " git_user_name
+				read -rp "Enter your email for git commits: " git_user_email
+			else
+				git_user_name="$USER"
+				git_user_email="$USER@$(hostname -f)"
+			fi
+			{
+				echo "# Added by $CLONE_DIR/bootstrap.sh"
+				echo "[user]"
+				echo "    name = $git_user_name"
+				echo "    email = $git_user_email"
+			} >~/.gitconfig.user
+			echo "Git user information written to ~/.gitconfig.user"
+		fi
+	fi
 }
 
 function main() {
