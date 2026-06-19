@@ -115,7 +115,7 @@ function create_symlinks() {
 			continue
 		fi
 		ln -svF "$src" "$dst"
-	done < <(find "$CLONE_DIR" -maxdepth 1 -name ".*" -type f -not -name ".gitignore" -print0)
+	done < <(find "$CLONE_DIR" -maxdepth 1 -name ".*" -type f -not -name ".gitignore" -not -name ".mdl*" -print0)
 }
 
 function main() {
