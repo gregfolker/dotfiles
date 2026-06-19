@@ -1,0 +1,184 @@
+[advice]
+    skippedCherryPicks = false
+
+[alias]
+    # List aliases.
+    alias = "!git config --list | grep alias | cut -c 7- | sort"
+
+    # Add currently staged files to the latest commit without editing the commit message.
+    amend = !git commit --amend --reuse-message=HEAD
+
+    # Delete all local branches that have been merged.
+    cleanup = "!git branch --merged | grep -v '\\*' | xargs -n1 git branch -d"
+
+    # Mark changes as finished in a rebase.
+    continue = rebase --continue
+
+    # Number of commits the current branch is ahead of the tracking branch.
+    count = !git rev-list --count @{u}..HEAD
+
+    # List contributors sorted by number of commits to the project.
+    contributors = !git shortlog --summary --numbered --email
+
+    # Cherry pick changes from another branch.
+    cp = !git cherry-pick -x
+
+    # For fun!
+    dad = "!curl -w \"\\n\" https://icanhazdadjoke.com/"
+
+    # Get the name of the default branch for the repository.
+    default = symbolic-ref refs/remotes/origin/HEAD --short
+
+    # Create a dummy commit for testing.
+    dummy = "!f() { touch $(openssl rand -hex 10 && git add . && git commit -m "dummy commit"); } f;"
+
+    # Open a commit message for editing.
+    reword = "!f() { git commit --fixup=reword:${1-HEAD} && GIT_EDITOR=true git rebase --interactive --autosquash; }; f"
+
+    # Open files with conflicts in an editor.
+    resolve = "!f() { $(git config core.editor) -p $(git diff --name-only --diff-filter=U); }; f"
+
+    # View all commits that modified a specific a file.
+    flog = !git log -u
+
+    # Checkout a branch, creating it if necessary.
+    go = "!f() { git checkout -b \"$1\" 2>/dev/null || git checkout \"$1\"; }; f"
+
+    # Show a graph-like history of all branches in the repository.
+    graph = !git log --oneline --graph --decorate --all
+
+    # Shortlog of commits on the branch.
+    ll = !git log --oneline @{u}..HEAD
+
+    # Delete a branch locally and the matching remote branch.
+    nuke = "!f() { git branch -D \"$1\" && git push $(git remote show) :$1; }; f"
+
+    # Publish commits to a new remote branch. Defaults to pushing all commits on the current branch.
+    publish = "!f() { git push $(git remote) ${2-HEAD}:${1}; }; f"
+
+    # Remove the old tag with this name and tag the latest commit with it.
+	retag = "!f() { git tag -d $1 && git push origin :refs/tags/$1 && git tag $1; }; f"
+
+    # Save a snapshot of uncommited changes to the stash.
+    snapshot = !git stash save --include-untracked "snapshot: $(date)" && git stash apply "stash@{0}"
+
+    # List snapshots in the stash.
+    snapshots = !git stash list --grep snapshot
+
+    # View a diff of staged changes.
+    staged = !git diff --cached
+
+    # Fuzzy find a commit and print the rev to the console.
+    fuzzy-rev = "!git log --oneline | fzf | awk '{print $1}'"
+
+    # Fuzzy apply staged changes to a commit on the current branch.
+    fuzzy-fix = "!git log --oneline @{u}..HEAD | fzf | awk '{print $1}' | xargs git commit --fixup && GIT_EDITOR=true git rebase --interactive --autosquash"
+
+    # Fuzzy find a branch and check it out locally.
+    fuzzy-branch = "!git for-each-ref --format='%(refname:short)' | fzf --print0 | xargs -0 git checkout"
+
+    # Fuzzy add files to the staging area.
+    fuzzy-add = "!git ls-files -m -o --exclude-standard | fzf --print0 -m --preview 'git diff --color=always {} | delta --width=$FZF_PREVIEW_COLUMNS' --preview-window=top:25:wrap | xargs -0 -o git add --all"
+
+    # Show verbose output about tags/branches/remotes.
+    tags = !git tag -l
+    branches = !git branch -vv --all
+    remotes = !git remote --verbose
+
+    # Undo the most recent commit.
+    undo = !git reset --soft HEAD^
+
+    # Remove files from the staging area.
+    unstage = !git reset HEAD --
+
+    # Get the name of the upstream branch that the current branch is tracking.
+    upstream = !git rev-parse --abbrev-ref --symbolic-full-name @{u}
+
+    # Print the email being used for the current project.
+    whoami = !git config user.email
+
+[apply]
+    # Detect and fix whitespace errors when applying patches.
+    # https://git-scm.com/docs/git-apply/2.40.0#Documentation/git-apply.txt---whitespaceaction
+    whitespace = fix
+
+[branch]
+    # Make git pull always perform a rebase instead of a merge.
+    autosetupRebase = always
+
+    # Automatically set the upstream branch when new branches are created.
+    autosetupMerge = always
+
+    # Sort branches by most recently changed.
+    sort = -committerdate
+
+[color]
+    ui = true
+
+[commit]
+    # Show the whole diff of changes in the text editor when writing commit messages.
+    verbose = true
+
+[core]
+    autocrlf = input
+    editor = vim
+
+    # Make git rebase safer on MacOS.
+    # https://www.git-tower.com/blog/make-git-rebase-safe-on-osx/
+    trustctime = false
+
+    # Speed up commands that use untracked files (e.g., git status).
+    # https://git-scm.com/docs/git-update-index#_untracked_cache
+    untrackedCache = true
+
+    # Use delta for paging if it is installed.
+    pager = "command -v delta >/dev/null && delta || less"
+
+[diff]
+    # Detect copies as well as renames.
+    renames = copies
+
+[diff "bin"]
+    # Use hexdump to diff binary files.
+    textconv = hexdump -v -C
+
+[fetch]
+    # Automatically delete remote tracking branches and tags that have been deleted.
+    prune = true
+    prunetags = true
+
+[help]
+    autocorrect = prompt
+
+[include]
+    path = ~/.gitconfig.user
+
+[init]
+    defaultBranch = main
+
+[interactive]
+    # Use delta for interactive diffs if installed.
+    # cat needs to be used here instead of less because interactive staging
+    # expects a raw stream filter rather than an actual terminal pager.
+    diffFilter = "command -v delta >/dev/null 2>&1 && delta --color-only || cat"
+
+[merge]
+    conflictStyle = zdiff3
+
+[pull]
+    rebase = true
+
+[push]
+    # Pushes update a branch with the same name on the remote
+    # https://git-scm.com/docs/git-config#Documentation/git-config.txt-pushdefault
+    default = current
+
+[rebase]
+    # Always autosquash when doing a rebase.
+    autoSquash = true
+
+    # Always stash changes before a rebase and pop them off the stack afterwards.
+    autoStash = true
+
+[url "git@github.com:"]
+    pushInsteadOf = "https://github.com/"
