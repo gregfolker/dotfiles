@@ -20,7 +20,7 @@ endif
 test: lint shellcheck ## Run linters and shellcheck
 
 .PHONY: lint
-lint: shfmt yamllint ## Run linters
+lint: shfmt yamllint mdl ## Run linters
 
 .PHONY: shfmt
 shfmt: ## Run shfmt on shell scripts
@@ -39,3 +39,10 @@ shellcheck: ## Run shellcheck on shell scripts
 	docker run $(DOCKER_FLAGS) \
 		-v "${PWD}:/mnt:ro" --workdir /mnt \
 		koalaman/shellcheck:latest bootstrap.sh
+
+.PHONY: mdl
+mdl: ## Run mdl on markdown files
+	docker run $(DOCKER_FLAGS) \
+		-v "${PWD}:/mnt:ro" --workdir /mnt \
+		--platform linux/amd64 \
+		markdownlint/markdownlint .
