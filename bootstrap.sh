@@ -158,8 +158,10 @@ function main() {
 
 	if command -v brew >/dev/null; then
 		if [ -z "$minimal" ]; then
-			echo "Installing goodies..."
-			brew bundle --file="$CLONE_DIR/Brewfile"
+			if ! brew bundle check --file="$CLONE_DIR/Brewfile" >/dev/null 2>&1; then
+				echo "Installing goodies..."
+				brew bundle --file="$CLONE_DIR/Brewfile"
+			fi
 		fi
 	fi
 
