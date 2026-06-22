@@ -148,6 +148,7 @@ function main() {
 	install_homebrew
 
 	if command -v brew >/dev/null; then
+		brew config
 		echo "Installing packages..."
 		brew update && brew upgrade && brew install "${BREW_PKGS[@]}"
 	fi
