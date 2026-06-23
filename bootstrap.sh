@@ -117,6 +117,15 @@ function create_symlinks() {
 		ln -svF "$src" "$dst"
 	done < <(find "$CLONE_DIR" -maxdepth 1 -name ".*" -type f -not -name ".gitignore" -not -name ".mdl*" -print0)
 
+	test ! -d ~/.local/bin && mkdir -vp ~/.local/bin
+	while IFS='' read -r -d '' cmd; do
+		if [ -x "$cmd" ]; then
+			src="$(realpath "$cmd")"
+			dst="$HOME/.local/bin/$(basename "$cmd")"
+			ln -svF "$src" "$dst"
+		fi
+	done < <(find "$CLONE_DIR/bin" -type f -print0)
+
 	if command -v git >/dev/null; then
 		if [ ! -f ~/.gitconfig.user ]; then
 			local git_user_name=
