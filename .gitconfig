@@ -83,6 +83,9 @@
     # Fuzzy show the diff for a commit.
     fuzzy-show = "!git log --oneline | fzf | awk '{print $1}' | xargs git show"
 
+    # Fuzzy push changes to a new remote branch
+    fuzzy-push = "!f() { git log --oneline @{u}..HEAD | fzf | awk '{print $1}' | xargs -I{} -t git push $(git remote) '{}':refs/heads/${1}; }; f"
+
     # Show verbose output about tags/branches/remotes.
     tags = !git tag -l
     branches = !git branch -vv --all
