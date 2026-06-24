@@ -1,0 +1,21 @@
+# shellcheck shell=bash
+
+alias reload='exec $SHELL -l'
+
+if command -v gls >/dev/null; then
+	alias ls="gls -F --color"
+	alias ll="gls -lh --color"
+	alias la="gls -lAh --color"
+else
+	alias ls='ls -F --color'
+	alias ll="ls -lh --color"
+	alias la="ls -lAh --color"
+fi
+
+alias ld='ls -lf | grep --color=never '^d''
+
+alias tree='tree -C'
+
+alias grep='grep --color=auto'
+
+alias map='xargs -n1'
