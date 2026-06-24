@@ -125,26 +125,31 @@ function create_symlinks() {
 			ln -svF "$src" "$dst"
 		fi
 	done < <(find "$CLONE_DIR/bin" -type f -print0)
+}
 
-	if command -v git >/dev/null; then
-		if [ ! -f ~/.gitconfig.user ]; then
-			local git_user_name=
-			local git_user_email=
-			if [[ -t 0 ]]; then
-				read -rp "Enter your name for git commits: " git_user_name
-				read -rp "Enter your email for git commits: " git_user_email
-			else
-				git_user_name="$USER"
-				git_user_email="$USER@$(hostname -f)"
-			fi
-			{
-				echo "# Added by $CLONE_DIR/bootstrap.sh"
-				echo "[user]"
-				echo "    name = $git_user_name"
-				echo "    email = $git_user_email"
-			} >~/.gitconfig.user
-			echo "Git user information written to ~/.gitconfig.user"
+function configure_git() {
+	if ! command -v git >/dev/null; then
+		echo "Git is not installed, skipping..."
+		return 0
+	fi
+
+	if [ ! -f ~/.gitconfig.user ]; then
+		local git_user_name=
+		local git_user_email=
+		if [[ -t 0 ]]; then
+			read -rp "Enter your name for git commits: " git_user_name
+			read -rp "Enter your email for git commits: " git_user_email
+		else
+			git_user_name="$USER"
+			git_user_email="$USER@$(hostname -f)"
 		fi
+		{
+			echo "# Added by $CLONE_DIR/bootstrap.sh"
+			echo "[user]"
+			echo "    name = $git_user_name"
+			echo "    email = $git_user_email"
+		} >~/.gitconfig.user
+		echo "Git user information written to ~/.gitconfig.user"
 	fi
 }
 
@@ -197,6 +202,9 @@ function main() {
 
 	echo "Creating symlinks..."
 	create_symlinks
+
+	echo "Configuring git..."
+	configure_git
 
 	echo "Bootstrap complete."
 }
