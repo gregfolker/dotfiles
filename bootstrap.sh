@@ -125,6 +125,14 @@ function create_symlinks() {
 			ln -svF "$src" "$dst"
 		fi
 	done < <(find "$CLONE_DIR/bin" -type f -print0)
+
+	{
+		echo
+		echo "# Added by $CLONE_DIR/bootstrap.sh"
+		echo "test -r ~/.env && . ~/.env"
+		echo "test -r ~/.aliases && . ~/.aliases"
+		echo "test -r ~/.functions && . ~/.functions"
+	} >>~/."$(basename "$SHELL")"rc
 }
 
 function configure_git() {

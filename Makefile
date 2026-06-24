@@ -16,6 +16,8 @@ ifeq ($(INTERACTIVE), 1)
 	DOCKER_FLAGS += --tty
 endif
 
+SHELL_FILES := bootstrap.sh .aliases .env .functions
+
 .PHONY: test
 test: lint shellcheck ## Run linters and shellcheck
 
@@ -26,7 +28,7 @@ lint: shfmt yamllint mdl ## Run linters
 shfmt: ## Run shfmt on shell scripts
 	docker run $(DOCKER_FLAGS) \
 		-v "${PWD}:/mnt" --workdir /mnt \
-		mvdan/shfmt:latest --diff --simplify --write bootstrap.sh
+		mvdan/shfmt:latest --diff --simplify --write $(SHELL_FILES)
 
 .PHONY: yamllint
 yamllint: ## Run yamllint on YAML files
@@ -38,7 +40,7 @@ yamllint: ## Run yamllint on YAML files
 shellcheck: ## Run shellcheck on shell scripts
 	docker run $(DOCKER_FLAGS) \
 		-v "${PWD}:/mnt:ro" --workdir /mnt \
-		koalaman/shellcheck:latest bootstrap.sh
+		koalaman/shellcheck:latest -x $(SHELL_FILES)
 
 .PHONY: mdl
 mdl: ## Run mdl on markdown files
