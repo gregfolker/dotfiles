@@ -133,6 +133,15 @@ function create_symlinks() {
 		echo "test -r ~/.aliases && . ~/.aliases"
 		echo "test -r ~/.functions && . ~/.functions"
 	} >>~/."$(basename "$SHELL")"rc
+
+	if [ "$(basename "$SHELL")" == "zsh" ]; then
+		# enable autocompletion for git commands in zsh
+		{
+			echo
+			echo "# Added by $CLONE_DIR/bootstrap.sh"
+			echo "autoload -Uz compinit && compinit"
+		} >>~/.zshrc
+	fi
 }
 
 function configure_git() {
