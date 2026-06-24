@@ -80,6 +80,9 @@
     # Fuzzy add files to the staging area.
     fuzzy-add = "!git ls-files -m -o --exclude-standard | fzf --print0 -m --preview 'git diff --color=always {} | delta --width=$FZF_PREVIEW_COLUMNS' --preview-window=top:25:wrap | xargs -0 -o git add --all"
 
+    # Fuzzy show the diff for a commit.
+    fuzzy-show = "!git log --oneline | fzf | awk '{print $1}' | xargs git show"
+
     # Show verbose output about tags/branches/remotes.
     tags = !git tag -l
     branches = !git branch -vv --all
