@@ -29,6 +29,9 @@ set noswapfile
 set nobackup
 set nowritebackup
 
+" Automatically reload files modified outside of vim
+set autoread
+
 " Do not wrap lines
 set nowrap
 
