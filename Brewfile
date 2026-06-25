@@ -15,3 +15,4 @@ brew "the_silver_searcher"
 brew "tree"
 
 cask "ghostty"
+cask "font-jetbrains-mono"
