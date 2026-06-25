@@ -7,11 +7,18 @@ jobs:
     steps:
       - name: Checkout branch
         uses: actions/checkout@v6
+      - name: Install stylua
+        uses: JohnnyMorganz/stylua-action@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          version: latest
+          # This disables running `stylua`
+          args: false
       - name: Run linters
         run: |
           make lint
         shell: bash
-      - name: Run shellcheck
+      - name: Run tests
         run: |
-          make shellcheck
+          make test
         shell: bash
