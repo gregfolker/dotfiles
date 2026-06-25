@@ -107,10 +107,10 @@ nnoremap ; :
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<cr>
 
 " Make window navigation easier
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
 " Make H and L go to the start and end of the current line, respectively
 noremap H ^
