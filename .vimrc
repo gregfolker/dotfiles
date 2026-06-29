@@ -24,6 +24,9 @@ set wildmenu
 " Change the leader key from \ to ,
 let mapleader=","
 
+" Disable the mouse so it's easier to use things like the system clipboard and click links
+set mouse=
+
 " Disable swap file and backup generation
 set noswapfile
 set nobackup
