@@ -34,6 +34,7 @@ as dependencies of other plugins.
 | [noice](https://github.com/folke/noice.nvim)                                | Clean UI for `messages`, `cmdline`, and the `popupmenu`.                           |
 | [nvim-surround](https://github.com/kylechui/nvim-surround)                  | Add/change/delete surrounding delimiter pairs and quotes.                          |
 | [range-highlight](https://github.com/winston0410/range-highlight.nvim)      | Highlights line ranges entered on the command line.                                |
+| [smart-splits](https://github.com/mrjones2014/smart-splits.nvim)            | Smarter and more intuitive split pane management with `tmux` and `neovim`.         |
 | [smear-cursor](https://github.com/sphamba/smear-cursor.nvim)                | Animates the cursor with a smear effect when moving.                               |
 | [synthweave](https://github.com/samharju/synthweave.nvim)                   | Colorscheme.                                                                       |
 | [telescope](https://github.com/nvim-telescope/telescope.nvim)               | Fuzzy-finder over lists from inside `neovim`.                                      |
