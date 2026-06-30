@@ -1,0 +1,29 @@
+---
+name: Update Neovim Plugins
+on:  # yamllint disable-line rule:truthy
+  schedule:
+    # Runs at 00:00 UTC every Sunday
+    - cron: '0 0 * * 0'
+  workflow_dispatch:  # Allow to manual trigger from the Actions tab
+jobs:
+  update-plugins:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Required for pushing the updated lazy-lock.json back to the repo
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Install Neovim
+        uses: rhysd/action-setup-vim@v1
+        with:
+          neovim: true
+          version: stable
+      - name: Update Lazy Plugins
+        run: |
+          # Runs Neovim headlessly, executes lazy.nvim sync, and exits automatically
+          nvim --headless "+Lazy! sync" +qa
+      - name: Commit and Push Changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(nvim): auto-update lazy-lock.json"
+          file_pattern: "**/lazy-lock.json"
