@@ -43,6 +43,8 @@
   "tiny-glimmer.nvim": { "branch": "main", "commit": "f26728abf811324d7ed6b035a11d7b76a27c06c3" },
   "tree-sitter-manager.nvim": { "branch": "main", "commit": "966c28dbc68fc99c82c51a64b6ec37f420aab880" },
   "vim-illuminate": { "branch": "master", "commit": "0d1e93684da00ab7c057410fecfc24f434698898" },
+  "vim-tmux-navigator": { "branch": "master", "commit": "e41c431a0c7b7388ae7ba341f01a0d217eb3a432" },
   "vimade": { "branch": "master", "commit": "a5323f4930e3f1f48c0329e50bd218ba61577aaf" },
+  "vimux": { "branch": "master", "commit": "d6cb7f63a8bb428ffc27060b7f83c77fb115589c" },
   "which-key.nvim": { "branch": "main", "commit": "3aab2147e74890957785941f0c1ad87d0a44c15a" }
 }

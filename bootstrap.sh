@@ -107,7 +107,7 @@ function download_dotfiles() {
 function create_symlinks() {
     local source_file=
     local target_file=
-    for filename in {nvim,.{aliases,functions,env}}; do
+    for filename in {nvim,.{aliases,functions,env,tmux.conf}}; do
         source_file="$CLONE_DIR/$filename"
         target_file="$HOME/$filename"
         if [ -f "$target_file" ] && [ ! -w "$target_file" ]; then

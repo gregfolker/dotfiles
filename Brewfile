@@ -16,6 +16,8 @@ brew "ripgrep"
 brew "the_silver_searcher"
 brew "tree"
 brew "mise"
+brew "tmux"
+brew "tpack"
 
 cask "ghostty"
 cask "font-jetbrains-mono"

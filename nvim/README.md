@@ -40,5 +40,6 @@ as dependencies of other plugins.
 | [tiny-glimmer](https://github.com/rachartier/tiny-glimmer.nvim)             | Add animations to text operations such as yank and paste.                          |
 | [tree-sitter-manager](https://github.com/romus204/tree-sitter-manager.nvim) | Tree-sitter parser manager.                                                        |
 | [vim-illuminate](https://github.com/RRethy/vim-illuminate)                  | Automatically underline the word under the cursor and other occurences.            |
+| [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator)     | Seamless navigation between vim and tmux splits with consistent key bindings       |
 | [vimade](https://github.com/TaDaa/vimade)                                   | Dim, fade, and tints inactive windows/buffers while preserving syntax highlighting |
 | [which-key](https://github.com/folke/which-key.nvim)                        | Show available bindings when typing                                                |
