@@ -15,4 +15,6 @@ jobs:
           GIT_BRANCH=$GITHUB_REF_NAME bash <(curl -fsSfL "https://raw.githubusercontent.com/gregfolker/dotfiles/$GITHUB_SHA/bootstrap.sh")
           git config --list
           source ~/.$(basename $SHELL)rc
+          # Validate neovim installation
+          nvim --headless "+Lazy! sync" +qa && nvim --headless "+checkhealth" +qa
         shell: bash
