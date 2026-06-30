@@ -86,6 +86,9 @@
     # Fuzzy push changes to a new remote branch
     fuzzy-push = "!f() { git log --oneline @{u}..HEAD | fzf | awk '{print $1}' | xargs -I{} -t git push $(git remote) '{}':refs/heads/${1}; }; f"
 
+    # Fuzzy update an existing branch with a range of commits
+    fuzzy-update = "!f() { git log --oneline @{u}..HEAD | fzf | awk '{print $1}' | xargs -I{} -t git push $(git remote) '{}':${1} --force-with-lease; }; f"
+
     # Show verbose output about tags/branches/remotes.
     tags = !git tag -l
     branches = !git branch -vv --all
