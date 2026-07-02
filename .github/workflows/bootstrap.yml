@@ -8,11 +8,16 @@ jobs:
       matrix:
         os: [macOS-15, macOS-26, ubuntu-latest]
     steps:
-      - name: Install dotfiles
+      - name: Run bootstrap.sh
         # yamllint disable rule:line-length
         run: |
           uname -a
           GIT_BRANCH=$GITHUB_REF_NAME bash <(curl -fsSfL "https://raw.githubusercontent.com/gregfolker/dotfiles/$GITHUB_SHA/bootstrap.sh")
-          git config --list
-          source ~/.$(basename $SHELL)rc
+        shell: bash
+      - name: Install neovim plugins
+        run: |
+          source ~/.env && env | sort
+          nvim --version
+          nvim --headless "+Lazy! sync" +qa
+          nvim --headless "+checkhealth" +qa
         shell: bash

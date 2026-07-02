@@ -115,7 +115,7 @@ function create_symlinks() {
 			continue
 		fi
 		ln -svF "$src" "$dst"
-	done < <(find "$CLONE_DIR" -maxdepth 1 -name ".*" -type f -not -name ".gitignore" -not -name ".mdl*" -print0)
+	done < <(find "$CLONE_DIR" -maxdepth 1 -name ".*" -type f -not -name ".gitignore" -not -name ".mdl*" -not -name ".lua*" -print0)
 
 	test ! -d ~/.local/bin && mkdir -vp ~/.local/bin
 	while IFS='' read -r -d '' cmd; do
@@ -125,6 +125,10 @@ function create_symlinks() {
 			ln -svF "$src" "$dst"
 		fi
 	done < <(find "$CLONE_DIR/bin" -type f -print0)
+
+	if command -v nvim >/dev/null; then
+		ln -svF "$CLONE_DIR/nvim" "$HOME/.config/nvim"
+	fi
 
 	{
 		echo
