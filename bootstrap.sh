@@ -7,19 +7,19 @@ readonly GIT_BRANCH="${GIT_BRANCH-main}"
 readonly CLONE_DIR="${CLONE_DIR-$HOME/.dotfiles}"
 
 BREW_PKGS=(
-	git
-	bash
-	curl
-	file
-	findutils
-	gcc
-	make
-	coreutils
-	wget
+    git
+    bash
+    curl
+    file
+    findutils
+    gcc
+    make
+    coreutils
+    wget
 )
 
 function usage() {
-	cat <<EOF
+    cat <<EOF
 Usage: ./bootstrap.sh [OPTIONS]
 
 Install dependencies and clone dotfiles on a MacOS or Linux system. This
@@ -44,190 +44,190 @@ EOF
 }
 
 function update_xcode() {
-	if [ ! -f "/Library/Developer/CommandLineTools/usr/bin/git" ]; then
-		echo "Xcode Command Line Tools is up to date, skipping..."
-		return 0
-	fi
+    if [ ! -f "/Library/Developer/CommandLineTools/usr/bin/git" ]; then
+        echo "Xcode Command Line Tools is up to date, skipping..."
+        return 0
+    fi
 
-	touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
-	softwareupdate -i -a
-	rm /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
+    touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
+    softwareupdate -i -a
+    rm /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
 }
 
 function install_homebrew() {
-	HOMEBREW_PREFIX="${HOMEBREW_PREFIX-}"
-	if [ -z "$HOMEBREW_PREFIX" ]; then
-		case "$(uname -s)" in
-		Darwin)
-			HOMEBREW_PREFIX="/opt/homebrew"
-			;;
-		Linux)
-			HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
-			;;
-		*)
-			echo "Unsupported Host OS: $(uname -s)"
-			exit 1
-			;;
-		esac
-	fi
+    HOMEBREW_PREFIX="${HOMEBREW_PREFIX-}"
+    if [ -z "$HOMEBREW_PREFIX" ]; then
+        case "$(uname -s)" in
+        Darwin)
+            HOMEBREW_PREFIX="/opt/homebrew"
+            ;;
+        Linux)
+            HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
+            ;;
+        *)
+            echo "Unsupported Host OS: $(uname -s)"
+            exit 1
+            ;;
+        esac
+    fi
 
-	if command -v brew >/dev/null; then
-		echo "Found $(brew --version), skipping..."
-		return 0
-	fi
+    if command -v brew >/dev/null; then
+        echo "Found $(brew --version), skipping..."
+        return 0
+    fi
 
-	if [ ! -d "$HOMEBREW_PREFIX" ]; then
-		if ! sudo --validate 2>/dev/null; then
-			echo "WARNING: $USER does not have permissions to install Homebrew, skipping..."
-			return 0
-		fi
-		test "$(uname -s)" == "Darwin" && update_xcode
-		NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-	fi
+    if [ ! -d "$HOMEBREW_PREFIX" ]; then
+        if ! sudo --validate 2>/dev/null; then
+            echo "WARNING: $USER does not have permissions to install Homebrew, skipping..."
+            return 0
+        fi
+        test "$(uname -s)" == "Darwin" && update_xcode
+        NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    fi
 
-	eval "$("$HOMEBREW_PREFIX/bin/brew" shellenv)"
+    eval "$("$HOMEBREW_PREFIX/bin/brew" shellenv)"
 }
 
 function download_dotfiles() {
-	if [ -d "$CLONE_DIR" ]; then
-		echo "dotfiles already found in $CLONE_DIR, skipping..."
-		return 0
-	fi
+    if [ -d "$CLONE_DIR" ]; then
+        echo "dotfiles already found in $CLONE_DIR, skipping..."
+        return 0
+    fi
 
-	if command -v git >/dev/null; then
-		git clone --recursive "$GIT_REPO_URL" -b "$GIT_BRANCH" "$CLONE_DIR"
-	else
-		mkdir -vp "$CLONE_DIR"
-		curl -L "$GIT_REPO_URL/archive/$GIT_BRANCH.tar.gz" -o /tmp/dotfiles.tar.gz
-		tar -zxf /tmp/dotfiles.tar.gz --directory "$CLONE_DIR" --strip-components=1
-		rm /tmp/dotfiles.tar.gz
-	fi
+    if command -v git >/dev/null; then
+        git clone --recursive "$GIT_REPO_URL" -b "$GIT_BRANCH" "$CLONE_DIR"
+    else
+        mkdir -vp "$CLONE_DIR"
+        curl -L "$GIT_REPO_URL/archive/$GIT_BRANCH.tar.gz" -o /tmp/dotfiles.tar.gz
+        tar -zxf /tmp/dotfiles.tar.gz --directory "$CLONE_DIR" --strip-components=1
+        rm /tmp/dotfiles.tar.gz
+    fi
 }
 
 function create_symlinks() {
-	local src=
-	local dst=
-	while IFS='' read -r -d '' dotfile; do
-		src="$(realpath "$dotfile")"
-		dst="$HOME/$(basename "$dotfile")"
-		if [ -f "$dst" ] && [ ! -w "$dst" ]; then
-			echo "$USER does not have permissions to modify $dst, skipping..."
-			continue
-		fi
-		ln -svF "$src" "$dst"
-	done < <(find "$CLONE_DIR" -maxdepth 1 -name ".*" -type f -not -name ".gitignore" -not -name ".mdl*" -not -name ".lua*" -print0)
+    local src=
+    local dst=
+    while IFS='' read -r -d '' dotfile; do
+        src="$(realpath "$dotfile")"
+        dst="$HOME/$(basename "$dotfile")"
+        if [ -f "$dst" ] && [ ! -w "$dst" ]; then
+            echo "$USER does not have permissions to modify $dst, skipping..."
+            continue
+        fi
+        ln -svF "$src" "$dst"
+    done < <(find "$CLONE_DIR" -maxdepth 1 -name ".*" -type f -not -name ".*ignore" -not -name ".yamlfmt*" -not -name ".editorconfig" -print0)
 
-	test ! -d ~/.local/bin && mkdir -vp ~/.local/bin
-	while IFS='' read -r -d '' cmd; do
-		if [ -x "$cmd" ]; then
-			src="$(realpath "$cmd")"
-			dst="$HOME/.local/bin/$(basename "$cmd")"
-			ln -svF "$src" "$dst"
-		fi
-	done < <(find "$CLONE_DIR/bin" -type f -print0)
+    test ! -d ~/.local/bin && mkdir -vp ~/.local/bin
+    while IFS='' read -r -d '' cmd; do
+        if [ -x "$cmd" ]; then
+            src="$(realpath "$cmd")"
+            dst="$HOME/.local/bin/$(basename "$cmd")"
+            ln -svF "$src" "$dst"
+        fi
+    done < <(find "$CLONE_DIR/bin" -type f -print0)
 
-	if command -v nvim >/dev/null; then
-		ln -svF "$CLONE_DIR/nvim" "$HOME/.config/nvim"
-	fi
+    if command -v nvim >/dev/null; then
+        ln -svF "$CLONE_DIR/nvim" "$HOME/.config/nvim"
+    fi
 
-	{
-		echo
-		echo "# Added by $CLONE_DIR/bootstrap.sh"
-		echo "test -r ~/.env && . ~/.env"
-		echo "test -r ~/.aliases && . ~/.aliases"
-		echo "test -r ~/.functions && . ~/.functions"
-	} >>~/."$(basename "$SHELL")"rc
+    {
+        echo
+        echo "# Added by $CLONE_DIR/bootstrap.sh"
+        echo "test -r ~/.env && . ~/.env"
+        echo "test -r ~/.aliases && . ~/.aliases"
+        echo "test -r ~/.functions && . ~/.functions"
+    } >>~/."$(basename "$SHELL")"rc
 
-	if [ "$(basename "$SHELL")" == "zsh" ]; then
-		# enable autocompletion for git commands in zsh
-		{
-			echo
-			echo "# Added by $CLONE_DIR/bootstrap.sh"
-			echo "autoload -Uz compinit && compinit"
-		} >>~/.zshrc
-	fi
+    if [ "$(basename "$SHELL")" == "zsh" ]; then
+        # enable autocompletion for git commands in zsh
+        {
+            echo
+            echo "# Added by $CLONE_DIR/bootstrap.sh"
+            echo "autoload -Uz compinit && compinit"
+        } >>~/.zshrc
+    fi
 }
 
 function configure_git() {
-	if ! command -v git >/dev/null; then
-		echo "Git is not installed, skipping..."
-		return 0
-	fi
+    if ! command -v git >/dev/null; then
+        echo "Git is not installed, skipping..."
+        return 0
+    fi
 
-	if [ ! -f ~/.gitconfig.user ]; then
-		local git_user_name=
-		local git_user_email=
-		if [[ -t 0 ]]; then
-			read -rp "Enter your name for git commits: " git_user_name
-			read -rp "Enter your email for git commits: " git_user_email
-		else
-			git_user_name="$USER"
-			git_user_email="$USER@$(hostname -f)"
-		fi
-		{
-			echo "# Added by $CLONE_DIR/bootstrap.sh"
-			echo "[user]"
-			echo "    name = $git_user_name"
-			echo "    email = $git_user_email"
-		} >~/.gitconfig.user
-		echo "Git user information written to ~/.gitconfig.user"
-	fi
+    if [ ! -f ~/.gitconfig.user ]; then
+        local git_user_name=
+        local git_user_email=
+        if [[ -t 0 ]]; then
+            read -rp "Enter your name for git commits: " git_user_name
+            read -rp "Enter your email for git commits: " git_user_email
+        else
+            git_user_name="$USER"
+            git_user_email="$USER@$(hostname -f)"
+        fi
+        {
+            echo "# Added by $CLONE_DIR/bootstrap.sh"
+            echo "[user]"
+            echo "    name = $git_user_name"
+            echo "    email = $git_user_email"
+        } >~/.gitconfig.user
+        echo "Git user information written to ~/.gitconfig.user"
+    fi
 }
 
 function main() {
-	local minimal=
-	while [[ $# -gt 0 && $1 =~ ^- && $1 != "--" ]]; do
-		case $1 in
-		-h | --help)
-			usage
-			exit
-			;;
-		-v | --verbose)
-			set -o xtrace
-			export PS4='+ ${BASH_SOURCE:-}:${FUNCNAME[0]:-}:L${LINENO:-}: '
-			;;
-		-m | --minimal)
-			minimal=1
-			;;
-		*)
-			echo "Unknown option: $1"
-			usage
-			exit 1
-			;;
-		esac
-		shift
-	done
+    local minimal=
+    while [[ $# -gt 0 && $1 =~ ^- && $1 != "--" ]]; do
+        case $1 in
+        -h | --help)
+            usage
+            exit
+            ;;
+        -v | --verbose)
+            set -o xtrace
+            export PS4='+ ${BASH_SOURCE:-}:${FUNCNAME[0]:-}:L${LINENO:-}: '
+            ;;
+        -m | --minimal)
+            minimal=1
+            ;;
+        *)
+            echo "Unknown option: $1"
+            usage
+            exit 1
+            ;;
+        esac
+        shift
+    done
 
-	echo "Bootstrapping dotfiles..."
+    echo "Bootstrapping dotfiles..."
 
-	echo "Installing Homebrew..."
-	install_homebrew
+    echo "Installing Homebrew..."
+    install_homebrew
 
-	if command -v brew >/dev/null; then
-		brew config
-		echo "Installing packages..."
-		brew update && brew upgrade && brew install "${BREW_PKGS[@]}"
-	fi
+    if command -v brew >/dev/null; then
+        brew config
+        echo "Installing packages..."
+        brew update && brew upgrade && brew install "${BREW_PKGS[@]}"
+    fi
 
-	echo "Downloading dotfiles..."
-	download_dotfiles
+    echo "Downloading dotfiles..."
+    download_dotfiles
 
-	if command -v brew >/dev/null; then
-		if [ -z "$minimal" ]; then
-			if ! brew bundle check --file="$CLONE_DIR/Brewfile" >/dev/null 2>&1; then
-				echo "Installing goodies..."
-				brew bundle --file="$CLONE_DIR/Brewfile" || true
-			fi
-		fi
-	fi
+    if command -v brew >/dev/null; then
+        if [ -z "$minimal" ]; then
+            if ! brew bundle check --file="$CLONE_DIR/Brewfile" >/dev/null 2>&1; then
+                echo "Installing goodies..."
+                brew bundle --file="$CLONE_DIR/Brewfile" || true
+            fi
+        fi
+    fi
 
-	echo "Creating symlinks..."
-	create_symlinks
+    echo "Creating symlinks..."
+    create_symlinks
 
-	echo "Configuring git..."
-	configure_git
+    echo "Configuring git..."
+    configure_git
 
-	echo "Bootstrap complete."
+    echo "Bootstrap complete."
 }
 
 main "$@"
