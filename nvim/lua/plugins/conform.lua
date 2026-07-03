@@ -4,6 +4,8 @@ return {
 		formatters_by_ft = {
 			lua = { "stylua" },
 			sh = { "shfmt" },
+			yaml = { "yamlfmt" },
+			markdown = { "prettier" },
 		},
 		format_on_save = {
 			lsp_format = "fallback",

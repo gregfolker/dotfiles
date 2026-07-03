@@ -1,0 +1,26 @@
+---
+name: Run linters
+on:  # yamllint disable-line rule:truthy
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: jdx/mise-action@v4
+        with:
+          version: 2026.6.14
+          install: true
+          cache: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - run: stylua --check .
+      - run: shfmt --diff .
+      - run: yamlfmt -dry .
+      - run: prettier --check .
+      - run: yamllint --list-files --strict .
+      - run: shellcheck bootstrap.sh .aliases .env .functions
