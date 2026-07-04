@@ -105,30 +105,25 @@ function download_dotfiles() {
 }
 
 function create_symlinks() {
-    local src=
-    local dst=
-    while IFS='' read -r -d '' dotfile; do
-        src="$(realpath "$dotfile")"
-        dst="$HOME/$(basename "$dotfile")"
-        if [ -f "$dst" ] && [ ! -w "$dst" ]; then
-            echo "$USER does not have permissions to modify $dst, skipping..."
+    local source_file=
+    local target_file=
+    for filename in {nvim,.{aliases,functions,env}}; do
+        source_file="$CLONE_DIR/$filename"
+        target_file="$HOME/$filename"
+        if [ -f "$target_file" ] && [ ! -w "$target_file" ]; then
+            echo "$USER does not have permissions to modify $target_file, skipping..."
             continue
         fi
-        ln -svF "$src" "$dst"
-    done < <(find "$CLONE_DIR" -maxdepth 1 -name ".*" -type f -not -name ".*ignore" -not -name ".yamlfmt*" -not -name ".editorconfig" -print0)
+        ln -svF "$source_file" "$target_file"
+    done
 
     test ! -d ~/.local/bin && mkdir -vp ~/.local/bin
-    while IFS='' read -r -d '' cmd; do
-        if [ -x "$cmd" ]; then
-            src="$(realpath "$cmd")"
-            dst="$HOME/.local/bin/$(basename "$cmd")"
-            ln -svF "$src" "$dst"
+    find "$CLONE_DIR/bin/" -type f -print0 | while IFS= read -r -d '' source_file; do
+        if [ -x "$source_file" ]; then
+            target_file="$HOME/.local/bin/$(basename "$source_file")"
+            ln -svF "$source_file" "$target_file"
         fi
-    done < <(find "$CLONE_DIR/bin" -type f -print0)
-
-    if command -v nvim >/dev/null; then
-        ln -svF "$CLONE_DIR/nvim" "$HOME/.config/nvim"
-    fi
+    done
 
     {
         echo
