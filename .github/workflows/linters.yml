@@ -18,6 +18,7 @@ jobs:
           install: true
           cache: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
+      - run: pre-commit run --all-files
       - run: stylua --check .
       - run: shfmt --diff bootstrap.sh .{aliases,env,functions}
       - run: yamlfmt -dry .
