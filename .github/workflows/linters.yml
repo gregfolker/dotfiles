@@ -19,8 +19,8 @@ jobs:
           cache: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
       - run: stylua --check .
-      - run: shfmt --diff .
+      - run: shfmt --diff bootstrap.sh .{aliases,env,functions}
       - run: yamlfmt -dry .
       - run: prettier --check .
       - run: yamllint --list-files --strict .
-      - run: shellcheck bootstrap.sh .aliases .env .functions
+      - run: shellcheck bootstrap.sh .{aliases,env,functions}
