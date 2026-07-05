@@ -43,4 +43,5 @@ as dependencies of other plugins.
 | [vim-illuminate](https://github.com/RRethy/vim-illuminate)                  | Automatically underline the word under the cursor and other occurences.            |
 | [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator)     | Seamless navigation between vim and tmux splits with consistent key bindings       |
 | [vimade](https://github.com/TaDaa/vimade)                                   | Dim, fade, and tints inactive windows/buffers while preserving syntax highlighting |
+| [vimux](https://github.com/preservim/vimux)                                 | Effortless interaction with `tmux` from `neovim`.                                  |
 | [which-key](https://github.com/folke/which-key.nvim)                        | Show available bindings when typing                                                |
