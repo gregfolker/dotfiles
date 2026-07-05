@@ -1,4 +1,5 @@
 [tools]
+node = "latest"
 pre-commit = "4.6.0"
 prettier = "3.9.4"
 shellcheck = "0.11.0"
