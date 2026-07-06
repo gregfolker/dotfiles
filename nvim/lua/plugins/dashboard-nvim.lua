@@ -49,6 +49,12 @@ return {
 						key = "u",
 					},
 					{
+						icon = "󰏘  ",
+						desc = "Themes",
+						action = "Huez",
+						key = "t",
+					},
+					{
 						icon = "󰩈  ",
 						desc = "Quit",
 						action = ":qa",
