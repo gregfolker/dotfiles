@@ -24,6 +24,7 @@ jobs:
           readlink ~/.vimrc
           readlink ~/.virc
           readlink ~/.config/nvim
+          readlink ~/.local/bin/dot
       - name: Install neovim plugins
         run: |
           source ~/.env && env | sort

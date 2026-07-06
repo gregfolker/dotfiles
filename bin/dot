@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+DOTFILES="${DOTFILES-$HOME/.dotfiles}"
+
+function usage() {
+    cat <<EOF
+Usage: dot [OPTIONS] COMMAND
+
+Tool for managing a local dotfiles installation.
+
+Options:
+    -h, --help          Show this help message and exit.
+    -v, --verbose       Enable verbose logging.
+
+Commands:
+    use                 Use the specified remote branch locally.
+    sync                Sync the local branch with the remote tracking branch.
+    info                Print information about the current configuration.
+    latest              Use the latest version of dotfiles.
+EOF
+}
+
+function main() {
+    while [[ $# -gt 0 && $1 =~ ^- && $1 != "--" ]]; do
+        case $1 in
+        -h | --help)
+            usage
+            exit
+            ;;
+        -v | --verbose)
+            set -o xtrace
+            export PS4='+ ${BASH_SOURCE:-}:${FUNCNAME[0]:-}:L${LINENO:-}: '
+            ;;
+        *)
+            echo "Unknown option: $1"
+            usage
+            exit 1
+            ;;
+        esac
+        shift
+    done
+
+    case $1 in
+    use)
+        local branch="${2-}"
+        if [ -z "$branch" ]; then
+            # If no branch is specified open fuzzy-finder to select one.
+            branch=$(git for-each-ref --format='%(refname:short)' | fzf)
+        fi
+        git switch "$branch"
+        ;;
+    sync)
+        git pull
+        ;;
+    info)
+        git wtf
+        ;;
+    latest)
+        git checkout main && git pull
+        ;;
+    esac
+
+    return 0
+}
+
+trap "popd >/dev/null" EXIT
+pushd "$DOTFILES" >/dev/null
+main "$@"
