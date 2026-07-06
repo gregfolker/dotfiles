@@ -12,6 +12,7 @@ return {
 		{ "rose-pine/neovim", lazy = true, enabled = true },
 		{ "hyperb1iss/silkcircuit", lazy = true, enabled = true },
 		{ "embark-theme/vim", lazy = true, enabled = true },
+		{ "eldritch-theme/eldritch.nvim", lazy = true, enabled = true },
 	},
 	config = function()
 		require("huez").setup()
