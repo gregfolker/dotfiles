@@ -20,6 +20,7 @@ as dependencies of other plugins.
 | [duck](https://github.com/tamton-aquib/duck.nvim)                           | Spawn a duck to waddle around the code.                                            |
 | [gitsigns](https://github.com/lewis6991/gitsigns.nvim)                      | Deep buffer integration for `git`.                                                 |
 | [hawtkeys](https://github.com/tris203/hawtkeys.nvim)                        | Better searching for mappings and finding potential duplicates.                    |
+| [huez](https://github.com/vague2k/huez.nvim)                                | Colorscheme manager.                                                               |
 | [indent-blankline](https://github.com/lukas-reineke/indent-blankline.nvim)  | Adds indentation guides using virtual text.                                        |
 | [lazy](https://github.com/folke/lazy.nvim)                                  | Plugin Manager.                                                                    |
 | [lexima](https://github.com/cohama/lexima.vim)                              | Auto-close pairs in insert mode such as `()`, `{}`, and `""`.                      |
@@ -36,7 +37,6 @@ as dependencies of other plugins.
 | [range-highlight](https://github.com/winston0410/range-highlight.nvim)      | Highlights line ranges entered on the command line.                                |
 | [smart-splits](https://github.com/mrjones2014/smart-splits.nvim)            | Smarter and more intuitive split pane management with `tmux` and `neovim`.         |
 | [smear-cursor](https://github.com/sphamba/smear-cursor.nvim)                | Animates the cursor with a smear effect when moving.                               |
-| [synthweave](https://github.com/samharju/synthweave.nvim)                   | Colorscheme.                                                                       |
 | [telescope](https://github.com/nvim-telescope/telescope.nvim)               | Fuzzy-finder over lists from inside `neovim`.                                      |
 | [tiny-glimmer](https://github.com/rachartier/tiny-glimmer.nvim)             | Add animations to text operations such as yank and paste.                          |
 | [tree-sitter-manager](https://github.com/romus204/tree-sitter-manager.nvim) | Tree-sitter parser manager.                                                        |
