@@ -13,6 +13,7 @@
   "dashboard-nvim": { "branch": "master", "commit": "f787e3462c2ee2b6117b17c1aa4ddf66cb6f57fe" },
   "drop.nvim": { "branch": "main", "commit": "f27c147af59c41712dd3d513cb03f4fae7aec46d" },
   "duck.nvim": { "branch": "main", "commit": "d8a6b08af440e5a0e2b3b357e2f78bb1883272cd" },
+  "eldritch.nvim": { "branch": "master", "commit": "c9131a5a11f00a2f428f563a4eb2c4aeb680d963" },
   "gitsigns.nvim": { "branch": "main", "commit": "eb60cc7b94c46005237fd34170d76f3a089a90aa" },
   "hawtkeys.nvim": { "branch": "main", "commit": "27495e633c071ab0881d337e0f59bfbbb19e0ac2" },
   "huez.nvim": { "branch": "stable", "commit": "03e193e4aa02b5b3a439d0cc5edeb85a2f7b5415" },
