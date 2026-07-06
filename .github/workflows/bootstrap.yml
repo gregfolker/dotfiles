@@ -14,6 +14,16 @@ jobs:
           uname -a
           GIT_BRANCH=$GITHUB_REF_NAME bash <(curl -fsSfL "https://raw.githubusercontent.com/gregfolker/dotfiles/$GITHUB_SHA/bootstrap.sh")
         shell: bash
+      - name: Verify symlinks
+        run: |
+          readlink ~/.aliases
+          readlink ~/.env
+          readlink ~/.functions
+          readlink ~/.tmux.conf
+          readlink ~/.gitconfig
+          readlink ~/.vimrc
+          readlink ~/.virc
+          readlink ~/.config/nvim
       - name: Install neovim plugins
         run: |
           source ~/.env && env | sort
