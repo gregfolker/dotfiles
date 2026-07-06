@@ -4,6 +4,7 @@ return {
 		formatters_by_ft = {
 			lua = { "stylua" },
 			sh = { "shfmt" },
+			bash = { "shfmt" },
 			yaml = { "yamlfmt" },
 			markdown = { "prettier" },
 		},
