@@ -114,7 +114,7 @@ function create_symlinks() {
             echo "$USER does not have permissions to modify $target_file, skipping..."
             continue
         fi
-        ln -svF "$source_file" "$target_file"
+        ln -svfF "$source_file" "$target_file"
     done
 
     XDG_CONFIG_HOME="${XDG_CONFIG_HOME-$HOME/.config}"
@@ -125,7 +125,7 @@ function create_symlinks() {
     find "$CLONE_DIR/bin/" -type f -print0 | while IFS= read -r -d '' source_file; do
         if [ -x "$source_file" ]; then
             target_file="$HOME/.local/bin/$(basename "$source_file")"
-            ln -svF "$source_file" "$target_file"
+            ln -svfF "$source_file" "$target_file"
         fi
     done
 
