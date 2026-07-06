@@ -6,7 +6,7 @@ return {
 	},
 	event = "VimEnter",
 	config = function()
-		local splash = require("ascii").art.misc.skulls.angryskull
+		local splash = require("ascii").art.misc.krakens.sleekraken
 		require("dashboard").setup({
 			theme = "doom",
 			config = {
