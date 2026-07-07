@@ -11,6 +11,14 @@ return {
 			-- this is actually an issue with the theme not setting the gitcommit colors
 			-- correctly but ¯\_(ツ)_/¯
 			nohighlight = { "gitcommit", "csv" },
+
+			ensure_installed = {
+				"c",
+				"python",
+				"bash",
+				"lua",
+				"yaml",
+			},
 		})
 	end,
 }
