@@ -10,6 +10,7 @@ as dependencies of other plugins.
 | Name                                                                        | Description                                                                        |
 | --------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | [better-escape](https://github.com/max397574/better-escape.nvim)            | Faster escaping with `jk`.                                                         |
+| [blink](https://github.com/saghen/blink.cmp)                                | Batteries included autocompletion.                                                 |
 | [Comment](https://github.com/numToStr/Comment.nvim)                         | Smart commenting                                                                   |
 | [coerce](https://github.com/gregorias/coerce.nvim)                          | Quickly change the case of the word under the cursor.                              |
 | [conform](https://github.com/stevearc/conform.nvim)                         | Formatter for various languages.                                                   |
