@@ -45,3 +45,4 @@ as dependencies of other plugins.
 | [vimade](https://github.com/TaDaa/vimade)                                   | Dim, fade, and tints inactive windows/buffers while preserving syntax highlighting |
 | [vimux](https://github.com/preservim/vimux)                                 | Effortless interaction with `tmux` from `neovim`.                                  |
 | [which-key](https://github.com/folke/which-key.nvim)                        | Show available bindings when typing                                                |
+| [wilder](https://github.com/gelguy/wilder.nvim)                             | Improved wildmenu.                                                                 |
