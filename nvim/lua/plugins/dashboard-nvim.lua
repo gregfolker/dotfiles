@@ -63,6 +63,9 @@ return {
 				},
 				footer = function()
 					local datetime = os.date("  %A, %B %d   %I:%M %p")
+					local stats = require("lazy").stats()
+					local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+
 					local version = " "
 						.. vim.version().major
 						.. "."
@@ -72,6 +75,8 @@ return {
 
 					return {
 						datetime,
+						"",
+						" " .. stats.loaded .. " plugins " .. "󱎫 " .. ms .. " ms",
 						"",
 						version,
 					}
