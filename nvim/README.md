@@ -45,6 +45,7 @@ as dependencies of other plugins.
 | [telescope](https://github.com/nvim-telescope/telescope.nvim)               | Fuzzy-finder over lists from inside `neovim`.                                      |
 | [tiny-glimmer](https://github.com/rachartier/tiny-glimmer.nvim)             | Add animations to text operations such as yank and paste.                          |
 | [tree-sitter-manager](https://github.com/romus204/tree-sitter-manager.nvim) | Tree-sitter parser manager.                                                        |
+| [oil](https://github.com/stevearc/oil.nvim)                                 | File explorer that allows editing as a normal `vim` buffer.                        |
 | [vim-illuminate](https://github.com/RRethy/vim-illuminate)                  | Automatically underline the word under the cursor and other occurences.            |
 | [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator)     | Seamless navigation between vim and tmux splits with consistent key bindings       |
 | [vimade](https://github.com/TaDaa/vimade)                                   | Dim, fade, and tints inactive windows/buffers while preserving syntax highlighting |
