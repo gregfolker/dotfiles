@@ -115,8 +115,8 @@
     # Make git pull always perform a rebase instead of a merge.
     autosetupRebase = always
 
-    # Automatically set the upstream branch when new branches are created.
-    autosetupMerge = always
+    # Inherit the upstream tracking branch when new branches are created.
+    autosetupMerge = inherit
 
     # Sort branches by most recently changed.
     sort = -committerdate
