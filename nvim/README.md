@@ -15,20 +15,24 @@ as dependencies of other plugins.
 | [coerce](https://github.com/gregorias/coerce.nvim)                          | Quickly change the case of the word under the cursor.                              |
 | [conform](https://github.com/stevearc/conform.nvim)                         | Formatter for various languages.                                                   |
 | [cheatsheet](https://github.com/doctorfree/cheatsheet.nvim)                 | Searchable cheatsheet                                                              |
+| [classlayout](https://github.com/J-Cowsert/classlayout.nvim)                | Popup menu to display offset/alignment of C/C++ structures.                        |
 | [csvview](https://github.com/hat0uma/csvview.nvim)                          | Tabular display for CSV data when viewing/editing in `neovim`.                     |
 | [dashboard-nvim](https://github.com/nvimdev/dashboard-nvim)                 | Start Screen.                                                                      |
 | [drop](https://github.com/folke/drop.nvim)                                  | Screensaver.                                                                       |
 | [duck](https://github.com/tamton-aquib/duck.nvim)                           | Spawn a duck to waddle around the code.                                            |
+| [garbage-day](https://github.com/Zeioth/garbage-day.nvim)                   | Garbage collector for running LSPs.                                                |
 | [gitsigns](https://github.com/lewis6991/gitsigns.nvim)                      | Deep buffer integration for `git`.                                                 |
 | [hawtkeys](https://github.com/tris203/hawtkeys.nvim)                        | Better searching for mappings and finding potential duplicates.                    |
 | [huez](https://github.com/vague2k/huez.nvim)                                | Colorscheme manager.                                                               |
 | [indent-blankline](https://github.com/lukas-reineke/indent-blankline.nvim)  | Adds indentation guides using virtual text.                                        |
 | [lazy](https://github.com/folke/lazy.nvim)                                  | Plugin Manager.                                                                    |
 | [lexima](https://github.com/cohama/lexima.vim)                              | Auto-close pairs in insert mode such as `()`, `{}`, and `""`.                      |
+| [lspsaga](https://github.com/nvimdev/lspsaga.nvim)                          | UI for searching/browsing LSP components.                                          |
 | [lualine](https://github.com/nvim-lualine/lualine.nvim)                     | Status Line.                                                                       |
 | [markview](https://github.com/OXY2DEV/markview.nvim)                        | Markdown Previewer.                                                                |
 | [mkdnflow](https://github.com/jakewvincent/mkdnflow.nvim)                   | Fluent navigation and management of markdown files.                                |
 | [move](https://github.com/fedepujol/move.nvim)                              | Move lines/blocks in visual mode.                                                  |
+| [neogen](https://github.com/danymat/neogen)                                 | Generator for code annotations.                                                    |
 | [neogit](https://github.com/NeogitOrg/neogit)                               | A `git` interface inside `neovim`.                                                 |
 | [neoscroll](https://github.com/karb94/neoscroll.nvim)                       | Smooth scrolling.                                                                  |
 | [neovim-tips](https://github.com/saxon1964/neovim-tips)                     | Custom picker for `neovim` tips, tricks, and shortcuts.                            |
