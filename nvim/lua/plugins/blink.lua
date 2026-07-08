@@ -1,7 +1,7 @@
 return {
 	"saghen/blink.cmp",
 	-- optional: provides snippets for the snippet source
-	dependencies = { "rafamadriz/friendly-snippets" },
+	dependencies = { "rafamadriz/friendly-snippets", "onsails/lspkind.nvim" },
 
 	-- use a release tag to download pre-built binaries
 	version = "1.*",
@@ -47,7 +47,17 @@ return {
 			menu = {
 				auto_show = true,
 				auto_show_delay_ms = 500,
+				draw = {
+					components = {
+						kind_icon = {
+							text = function(ctx)
+								return require("lspkind").symbol_map[ctx.kind] or ""
+							end,
+						},
+					},
+				},
 			},
+
 			documentation = {
 				auto_show = true,
 			},
