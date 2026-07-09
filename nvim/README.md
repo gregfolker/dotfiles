@@ -29,6 +29,7 @@ as dependencies of other plugins.
 | [lexima](https://github.com/cohama/lexima.vim)                              | Auto-close pairs in insert mode such as `()`, `{}`, and `""`.                      |
 | [lspsaga](https://github.com/nvimdev/lspsaga.nvim)                          | UI for searching/browsing LSP components.                                          |
 | [lualine](https://github.com/nvim-lualine/lualine.nvim)                     | Status Line.                                                                       |
+| [markdown-preview](https://github.com/iamcco/markdown-preview.nvim)         | View a live preview of markdown documents in a browser.                            |
 | [markview](https://github.com/OXY2DEV/markview.nvim)                        | Markdown Previewer.                                                                |
 | [mkdnflow](https://github.com/jakewvincent/mkdnflow.nvim)                   | Fluent navigation and management of markdown files.                                |
 | [move](https://github.com/fedepujol/move.nvim)                              | Move lines/blocks in visual mode.                                                  |
