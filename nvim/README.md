@@ -43,6 +43,7 @@ as dependencies of other plugins.
 | [range-highlight](https://github.com/winston0410/range-highlight.nvim)      | Highlights line ranges entered on the command line.                                |
 | [smart-splits](https://github.com/mrjones2014/smart-splits.nvim)            | Smarter and more intuitive split pane management with `tmux` and `neovim`.         |
 | [smear-cursor](https://github.com/sphamba/smear-cursor.nvim)                | Animates the cursor with a smear effect when moving.                               |
+| [sniprun](https://github.com/michaelb/sniprun)                              | Quickly run small snippets of code inside `neovim`.                                |
 | [telescope](https://github.com/nvim-telescope/telescope.nvim)               | Fuzzy-finder over lists from inside `neovim`.                                      |
 | [tiny-glimmer](https://github.com/rachartier/tiny-glimmer.nvim)             | Add animations to text operations such as yank and paste.                          |
 | [tree-sitter-manager](https://github.com/romus204/tree-sitter-manager.nvim) | Tree-sitter parser manager.                                                        |
