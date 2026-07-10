@@ -20,11 +20,11 @@ jobs:
           readlink ~/.env
           readlink ~/.functions
           readlink ~/.tmux.conf
-          readlink ~/.gitconfig
           readlink ~/.vimrc
           readlink ~/.virc
           readlink ~/.config/nvim
           readlink ~/.local/bin/dot
+          readlink ~/.config/git
       - name: Install neovim plugins
         run: |
           source ~/.env && env | sort

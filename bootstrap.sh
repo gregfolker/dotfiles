@@ -107,7 +107,7 @@ function download_dotfiles() {
 function create_symlinks() {
     local source_file=
     local target_file=
-    for filename in .{aliases,functions,env,tmux.conf,gitconfig,vimrc,virc}; do
+    for filename in .{aliases,functions,env,tmux.conf,vimrc,virc}; do
         source_file="$CLONE_DIR/$filename"
         target_file="$HOME/$filename"
         if [ -f "$target_file" ] && [ ! -w "$target_file" ]; then
@@ -120,6 +120,7 @@ function create_symlinks() {
     XDG_CONFIG_HOME="${XDG_CONFIG_HOME-$HOME/.config}"
     test ! -d "$XDG_CONFIG_HOME" && mkdir -vp "$XDG_CONFIG_HOME"
     ln -svfF "$(realpath "$CLONE_DIR/nvim")" "$XDG_CONFIG_HOME/nvim"
+    ln -svfF "$(realpath "$CLONE_DIR/git")" "$XDG_CONFIG_HOME/git"
 
     test ! -d ~/.local/bin && mkdir -vp ~/.local/bin
     find "$CLONE_DIR/bin/" -type f -print0 | while IFS= read -r -d '' source_file; do
