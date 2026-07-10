@@ -52,13 +52,13 @@ function main() {
         git switch "$branch"
         ;;
     sync)
-        git pull
+        git pull && mise install
         ;;
     info)
         git wtf
         ;;
     latest)
-        git checkout main && git pull
+        git checkout main && git pull && mise install
         ;;
     esac
 
