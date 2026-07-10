@@ -135,6 +135,7 @@ function create_symlinks() {
         echo "test -r ~/.env && . ~/.env"
         echo "test -r ~/.aliases && . ~/.aliases"
         echo "test -r ~/.functions && . ~/.functions"
+        echo "test -r ~/.cargo/env && . ~/.cargo/env"
     } >>~/."$(basename "$SHELL")"rc
 
     if [ "$(basename "$SHELL")" == "zsh" ]; then
@@ -171,6 +172,11 @@ function configure_git() {
         } >~/.gitconfig.user
         echo "Git user information written to ~/.gitconfig.user"
     fi
+}
+
+function install_rust() {
+    # https://rust-lang.org/tools/install/
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain stable --no-modify-path
 }
 
 function main() {
@@ -223,6 +229,7 @@ function main() {
                 brew uninstall --ignore-dependencies --force libtiff webp
                 echo "Installing goodies..."
                 brew bundle --file="$CLONE_DIR/Brewfile" || true
+                install_rust
             fi
         fi
     fi
@@ -233,7 +240,7 @@ function main() {
     echo "Configuring git..."
     configure_git
 
-    echo "Bootstrap complete."
+    echo "Bootstrap complete. Re-load your environment for changes to take effect."
 }
 
 main "$@"
