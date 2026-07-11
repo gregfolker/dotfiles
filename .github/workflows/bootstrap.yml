@@ -16,15 +16,8 @@ jobs:
         shell: bash
       - name: Verify symlinks
         run: |
-          readlink ~/.aliases
-          readlink ~/.env
-          readlink ~/.functions
-          readlink ~/.tmux.conf
-          readlink ~/.vimrc
-          readlink ~/.virc
-          readlink ~/.config/nvim
-          readlink ~/.local/bin/dot
-          readlink ~/.config/git
+          dot check
+        shell: bash
       - name: Install neovim plugins
         run: |
           source ~/.env && env | sort
