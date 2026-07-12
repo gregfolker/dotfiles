@@ -8,6 +8,7 @@ return {
 		ensure_installed = {
 			"clangd",
 			"bash-language-server",
+			"lua-language-server",
 		},
 	},
 }
