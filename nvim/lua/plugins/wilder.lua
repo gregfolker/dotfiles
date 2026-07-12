@@ -1,10 +1,21 @@
 return {
 	"gelguy/wilder.nvim",
-	opts = function()
+	config = function()
 		local wilder = require("wilder")
 		wilder.setup({
-			modes = { ":", "/", "?" },
+			modes = { "/", "?" },
 			enable_cmdline_enter = false,
 		})
+		wilder.set_option(
+			"renderer",
+			wilder.renderer_mux({
+				["?"] = wilder.popupmenu_renderer({
+					highlighter = wilder.basic_highlighter(),
+				}),
+				["/"] = wilder.wildmenu_renderer({
+					highlighter = wilder.basic_highlighter(),
+				}),
+			})
+		)
 	end,
 }
