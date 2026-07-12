@@ -26,6 +26,7 @@ as dependencies of other plugins.
 | [huez](https://github.com/vague2k/huez.nvim)                                | Colorscheme manager.                                                               |
 | [indent-blankline](https://github.com/lukas-reineke/indent-blankline.nvim)  | Adds indentation guides using virtual text.                                        |
 | [lazy](https://github.com/folke/lazy.nvim)                                  | Plugin Manager.                                                                    |
+| [lazydev](https://github.com/folke/lazydev.nvim)                            | Easy setup of the LuaLS.                                                           |
 | [lexima](https://github.com/cohama/lexima.vim)                              | Auto-close pairs in insert mode such as `()`, `{}`, and `""`.                      |
 | [lspsaga](https://github.com/nvimdev/lspsaga.nvim)                          | UI for searching/browsing LSP components.                                          |
 | [lualine](https://github.com/nvim-lualine/lualine.nvim)                     | Status Line.                                                                       |
