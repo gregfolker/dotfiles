@@ -53,6 +53,7 @@
   "outline.nvim": { "branch": "main", "commit": "2a132953b944561d45b52e4541ebfff71934a742" },
   "plenary.nvim": { "branch": "master", "commit": "74b06c6c75e4eeb3108ec01852001636d85a932b" },
   "popup.nvim": { "branch": "master", "commit": "b7404d35d5d3548a82149238289fa71f7f6de4ac" },
+  "project.nvim": { "branch": "main", "commit": "8c6bad7d22eef1b71144b401c9f74ed01526a4fb" },
   "range-highlight.nvim": { "branch": "master", "commit": "097103da6550c2a34c029971c3d7da63d3fef320" },
   "silkcircuit": { "branch": "main", "commit": "b200bc90ecd9f6252964ca48333182565123d139" },
   "smart-splits.nvim": { "branch": "master", "commit": "9493405fb8ee683aa6efd50c529f6296ad8f40ad" },
