@@ -55,6 +55,12 @@ return {
 						key = "u",
 					},
 					{
+						icon = "󰊢  ",
+						desc = "Git",
+						action = "Neogit",
+						key = "g",
+					},
+					{
 						icon = "  ",
 						desc = "Mason ",
 						action = "Mason",
