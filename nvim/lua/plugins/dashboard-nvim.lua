@@ -31,6 +31,12 @@ return {
 						key = "r",
 					},
 					{
+						icon = "  ",
+						desc = "Projects",
+						action = "Telescope projects",
+						key = "w",
+					},
+					{
 						icon = "  ",
 						desc = "Search",
 						action = "Telescope live_grep",
