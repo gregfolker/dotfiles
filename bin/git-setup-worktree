@@ -1,0 +1,76 @@
+#!/usr/bin/env bash
+
+REMOTE_ORIGIN="${REMOTE_ORIGIN-origin}"
+
+function usage() {
+    cat <<EOF
+Usage: git setup-worktree [REPO_URL] [TARGET_DIR]
+
+Setup an empty directory as a worktree for a git repository. This will clone the
+history of the repository instead of the repository itself (e.g., with --bare).
+[TARGET_DIR] is initialized in a way such that git commands can be run from it
+and serves as a "parent" folder for the local worktrees.
+
+The default remote origin name is "origin". To change this, specify REMOTE_ORIGIN=
+at the start of the command.
+
+Arguments:
+    [REPO_URL]          The URL of the repository to clone.
+    [TARGET_DIR]        The directory to initialize. Must be empty. Will
+                        be created if it does not already exist (Default: $PWD).
+
+Options:
+    -h                  Show this help message and exit.
+EOF
+}
+
+function main() {
+    if [ "$1" == "-h" ]; then
+        usage
+        exit
+    fi
+
+    local repo_url="${1-}"
+
+    if [ -z "$repo_url" ]; then
+        echo "ERROR: Missing repository URL."
+        usage
+        exit 1
+    fi
+
+    local target_dir="${2-PWD}"
+
+    if [ -d "$target_dir" ]; then
+        if [ "$(ls -A "$target_dir")" -gt 0 ]; then
+            echo "ERROR: $target_dir exists and is not empty."
+            echo "To keep your worktree setup clean, please provide an empty directory."
+            exit 1
+        fi
+    else
+        mkdir -vp "$target_dir"
+    fi
+
+    pushd "$target_dir" &>/dev/null && trap 'popd &>/dev/null' EXIT
+
+    echo "🚀 Setting up Git Worktree..."
+
+    # Clone repository history.
+    git clone --bare "$repo_url"
+
+    # Link root directory to the repository history. This allows
+    # git commands to be run from the root directory.
+    echo "gitdir: $(basename "$repo_url")" >.git
+
+    # Enable remote tracking. This ensures 'git fetch' sees all branches on the server.
+    git config remote.origin.fetch "+refs/heads/*:refs/remotes/${REMOTE_ORIGIN}/*"
+
+    # Fetch everything.
+    git fetch --all
+
+    echo "✅ Setup complete!"
+    echo "🌳 Create worktrees in $target_dir with 'git worktree add'"
+
+    return 0
+}
+
+main "$@"

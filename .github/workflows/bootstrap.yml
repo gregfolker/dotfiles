@@ -17,6 +17,8 @@ jobs:
       - name: Verify symlinks
         run: |
           dot check
+          git wtf -h
+          git setup-worktree -h
         shell: bash
       - name: Install neovim plugins
         run: |

@@ -20,6 +20,7 @@ as dependencies of other plugins.
 | [dashboard-nvim](https://github.com/nvimdev/dashboard-nvim)                 | Start Screen.                                                                      |
 | [drop](https://github.com/folke/drop.nvim)                                  | Screensaver.                                                                       |
 | [duck](https://github.com/tamton-aquib/duck.nvim)                           | Spawn a duck to waddle around the code.                                            |
+| [emoji](https://github.com/Allaman/emoji.nvim)                              | Telescope picker for emojis.                                                       |
 | [garbage-day](https://github.com/Zeioth/garbage-day.nvim)                   | Garbage collector for running LSPs.                                                |
 | [gitsigns](https://github.com/lewis6991/gitsigns.nvim)                      | Deep buffer integration for `git`.                                                 |
 | [hawtkeys](https://github.com/tris203/hawtkeys.nvim)                        | Better searching for mappings and finding potential duplicates.                    |
