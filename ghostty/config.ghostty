@@ -1,0 +1,8 @@
+# Hide the OS window controls
+macos-titlebar-style = transparent
+
+# https://ghostty.org/docs/config/reference#macos-option-as-alt
+macos-option-as-alt = true
+
+# Hide the mouse cursor as soon as you start typing
+mouse-hide-while-typing = true

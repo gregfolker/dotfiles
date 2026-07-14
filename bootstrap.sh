@@ -121,6 +121,7 @@ function create_symlinks() {
     test ! -d "$XDG_CONFIG_HOME" && mkdir -vp "$XDG_CONFIG_HOME"
     ln -svfF "$(realpath "$CLONE_DIR/nvim")" "$XDG_CONFIG_HOME/nvim"
     ln -svfF "$(realpath "$CLONE_DIR/git")" "$XDG_CONFIG_HOME/git"
+    ln -svfF "$(realpath "$CLONE_DIR/ghostty")" "$XDG_CONFIG_HOME/ghostty"
 
     test ! -d ~/.local/bin && mkdir -vp ~/.local/bin
     find "$CLONE_DIR/bin/" -type f -print0 | while IFS= read -r -d '' source_file; do

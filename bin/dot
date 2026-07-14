@@ -62,7 +62,7 @@ function main() {
         git checkout main && git pull && mise install
         ;;
     check)
-        for dotfile in ~/.{aliases,functions,env,vimrc,virc,config/{nvim,git}}; do
+        for dotfile in ~/.{aliases,functions,env,vimrc,virc,config/{nvim,git,ghostty}}; do
             readlink "$dotfile" || {
                 echo "Failed to read $dotfile" >&2
                 exit 1
