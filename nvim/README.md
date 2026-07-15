@@ -12,6 +12,7 @@ as dependencies of other plugins.
 | [better-escape](https://github.com/max397574/better-escape.nvim)            | Faster escaping with `jk`.                                                         |
 | [blink](https://github.com/saghen/blink.cmp)                                | Batteries included autocompletion.                                                 |
 | [Comment](https://github.com/numToStr/Comment.nvim)                         | Smart commenting                                                                   |
+| [compiler-explorer](https://github.com/krady21/compiler-explorer.nvim)      | Compile code with compiler-explorer via REST API.                                  |
 | [coerce](https://github.com/gregorias/coerce.nvim)                          | Quickly change the case of the word under the cursor.                              |
 | [conform](https://github.com/stevearc/conform.nvim)                         | Formatter for various languages.                                                   |
 | [cheatsheet](https://github.com/doctorfree/cheatsheet.nvim)                 | Searchable cheatsheet                                                              |
