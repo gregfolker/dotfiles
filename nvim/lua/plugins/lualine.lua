@@ -54,7 +54,14 @@ return {
 				section_separators = "",
 				theme = "auto",
 				disabled_filetypes = {
-					statusline = { "terminal", "quickfix", "dashboard", "NeogitStatus", "Outline" },
+					statusline = {
+						"terminal",
+						"quickfix",
+						"dashboard",
+						"NeogitStatus",
+						"Outline",
+						"neo-tree",
+					},
 				},
 			},
 			sections = {
