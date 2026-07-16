@@ -220,8 +220,10 @@ function main() {
     download_dotfiles
 
     if command -v brew >/dev/null; then
+        trap "popd >/dev/null" EXIT
+        pushd "$CLONE_DIR" >/dev/null
         if [ -z "$minimal" ]; then
-            if ! brew bundle check --file="$CLONE_DIR/Brewfile" >/dev/null 2>&1; then
+            if ! brew bundle check >/dev/null 2>&1; then
                 # TODO: The version of homebrew in GitHub actions encounters a circular dependency on
                 # libtiff and webp. Since we do not need these for anything, just force uninstall them
                 # before running brew bundle
@@ -230,7 +232,7 @@ function main() {
                 # https://github.com/Homebrew/homebrew-core/pull/287032
                 brew uninstall --ignore-dependencies --force libtiff webp
                 echo "Installing goodies..."
-                brew bundle --file="$CLONE_DIR/Brewfile" || true
+                brew bundle || true
                 install_rust
             fi
         fi

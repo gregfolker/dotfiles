@@ -21,3 +21,5 @@ brew "tpack"
 
 cask "ghostty"
 cask "font-jetbrains-mono"
+
+instance_eval(File.read("Brewfile.zephyr"))

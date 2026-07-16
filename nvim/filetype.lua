@@ -5,5 +5,6 @@ vim.filetype.add({
 	pattern = {
 		["%.functions"] = { "sh", { priority = 1 } },
 		["%.aliases"] = { "sh", { priority = 1 } },
+		["Brewfile.*"] = "ruby",
 	},
 })
