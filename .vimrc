@@ -108,6 +108,7 @@ nnoremap k gk
 
 " Make ; do the same thing as : because it's one less key to hit
 nnoremap ; :
+vnoremap ; :
 
 " Make ,W strip all trailing white space in the current file
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<cr>
