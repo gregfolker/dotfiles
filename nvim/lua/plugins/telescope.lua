@@ -16,8 +16,7 @@ return {
 			},
 			pickers = {
 				find_files = {
-					-- Instructs telescope to find hidden files/folders (like .github)
-					hidden = true,
+					find_command = { "fd", "--type", "f", "-I", "--hidden", "--exclude", ".git" },
 				},
 				live_grep = {
 					-- Ensure live_grep searches inside hidden files/folders as well
