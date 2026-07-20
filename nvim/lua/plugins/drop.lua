@@ -1,6 +1,7 @@
 return {
 	"folke/drop.nvim",
 	opts = {
+		screensaver = 1000 * 60 * 20, -- show after 20 minutes of inactivity
 		theme = "binary",
 		themes = {
 			{ theme = "new_year", month = 1, day = 1 },
