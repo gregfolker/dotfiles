@@ -18,10 +18,5 @@ jobs:
           install: true
           cache: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
-      - run: pre-commit run --all-files
-      - run: stylua --check .
-      - run: shfmt --diff bootstrap.sh .{aliases,env,functions} bin/dot
-      - run: yamlfmt -dry .
-      - run: prettier --check .
-      - run: yamllint --list-files --strict .
-      - run: shellcheck bootstrap.sh .{aliases,env,functions} bin/dot
+      - run: mise run pre-commit
+      - run: mise run lint

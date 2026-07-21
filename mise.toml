@@ -7,3 +7,51 @@ shfmt = "3.13.1"
 stylua = "2.5.2"
 yamlfmt = "0.21.0"
 yamllint = "1.38.0"
+
+[tasks.pre-commit]
+description = "Run pre-commit checks on all files"
+run = "pre-commit run --all-files"
+
+[tasks."lint:md"]
+description = "Lint markdown files"
+sources = [
+    "**/*.md"
+]
+run = "prettier --check {{ task_source_files() | join(sep=' ' ) }}"
+
+[tasks."lint:sh"]
+description = "Lint shell scripts"
+sources = [
+    "**/*.sh",
+    ".env",
+    ".functions",
+    ".aliases",
+    "bin/dot",
+    "bin/git-setup-worktree"
+]
+run = [
+    "shfmt --diff {{ task_source_files() | join(sep=' ') }}",
+    "shellcheck {{ task_source_files() | join(sep=' ') }}"
+]
+
+[tasks."lint:yaml"]
+description = "Lint yaml files"
+sources = [
+    "**/*.yml",
+    "**/*.yaml"
+]
+run = [
+    "yamllint --list-files --strict {{ task_source_files() | join(sep=' ') }}",
+    "yamlfmt {{ task_source_files() | join(sep=' ') }}"
+]
+
+[tasks."lint:lua"]
+description = "Lint lua files"
+sources = [
+    "**/*.lua"
+]
+run = "stylua --check {{ task_source_files() | join(sep=' ') }}"
+
+[tasks.lint]
+description = "Run linters"
+depends = ["lint:*"]
