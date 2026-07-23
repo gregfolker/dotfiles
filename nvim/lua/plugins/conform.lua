@@ -7,6 +7,7 @@ return {
 			bash = { "shfmt" },
 			yaml = { "yamlfmt" },
 			markdown = { "prettier" },
+			["_"] = { "trim_whitespace" },
 		},
 		format_on_save = {
 			lsp_format = "fallback",
