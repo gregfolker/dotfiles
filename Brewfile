@@ -18,6 +18,7 @@ brew "tree"
 brew "mise"
 brew "tmux"
 brew "tpack"
+brew "node"
 
 cask "ghostty"
 cask "font-jetbrains-mono"
