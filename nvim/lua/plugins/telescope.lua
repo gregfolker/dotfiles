@@ -24,6 +24,9 @@ return {
 						return { "--hidden" }
 					end,
 				},
+				oldfiles = {
+					cwd_only = true,
+				},
 			},
 		})
 	end,
