@@ -1,0 +1,24 @@
+# Optimized colima configuration for M1 MacBook Pro, 16GB RAM
+# https://iniakunhuda.medium.com/2-years-with-colima-the-optimization-guide-i-wish-i-had-from-day-one-8b89b8155285
+---
+cpu: 4
+memory: 8
+disk: 100
+arch: aarch64
+runtime: docker
+vmType: vz  # Apple Virtualization.Framework (native)
+rosetta: false
+mounts: []  # $HOME is mounted as writeable by default
+mountType: virtiofs  # Fastest option when using vz
+mountInotify: true
+network:
+  address: false
+  dns:
+    - 8.8.8.8
+    - 8.8.4.4
+kubernetes:
+  enabled: false
+autoActivate: true
+forwardAgent: false
+docker: {}
+sshConfig: false  # Do not modify ~/.ssh/config
