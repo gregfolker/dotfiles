@@ -123,6 +123,45 @@ function create_symlinks() {
     ln -svfF "$(realpath "$CLONE_DIR/git")" "$XDG_CONFIG_HOME/git"
     ln -svfF "$(realpath "$CLONE_DIR/ghostty")" "$XDG_CONFIG_HOME/ghostty"
 
+    if [ ! -d ~/.ssh ]; then
+        mkdir -v -m 700 ~/.ssh
+        mkdir -v -m 700 ~/.ssh/sockets
+        ln -svfF "$(realpath "$CLONE_DIR/ssh/ssh_config")" ~/.ssh/config
+    fi
+
+    test ! -d ~/.ssh/config.d && mkdir -v -m 700 ~/.ssh/config.d
+
+    if command -v colima >/dev/null; then
+        # https://colima.run/docs/profiles/
+        COLIMA_HOME="${COLIMA_HOME-$HOME/.colima}"
+        COLIMA_PROFILES=()
+
+        # Link ~/.ssh/config.d/colima to the generated ~/.colima/ssh_config so
+        # our ~/.ssh/config can "Include" it.
+        ln -svfF "$COLIMA_HOME/ssh_config" ~/.ssh/config.d/colima
+
+        test ! -d "$COLIMA_HOME/_templates" && mkdir -vp "$COLIMA_HOME/_templates"
+
+        # Always link the default profile.
+        ln -svfF "$CLONE_DIR/colima/default.yaml" "$COLIMA_HOME/_templates/default.yaml"
+        COLIMA_PROFILES+=("default")
+
+        OS_NAME=$(uname -s | tr '[:upper:]' '[:lower:]')
+        OS_ARCH=$(uname -m | tr '[:upper:]' '[:lower:]')
+        if [ -f "$CLONE_DIR/colima/dev/$OS_NAME-$OS_ARCH.yaml" ]; then
+            # Only link the developer profile if it exists for this OS.
+            ln -svfF "$CLONE_DIR/colima/dev/$OS_NAME-$OS_ARCH.yaml" "$COLIMA_HOME/_templates/dev.yaml"
+            COLIMA_PROFILES+=("dev")
+        fi
+
+        # Initialize the profiles for colima. Templates are copied instead of symlinked because
+        # colima writes directly to the profile configuration found at ~/.colima/<profile>/colima.yaml
+        for profile in "${COLIMA_PROFILES[@]}"; do
+            test ! -d "$COLIMA_HOME/$profile" && mkdir -vp "$COLIMA_HOME/$profile"
+            cp -v "$COLIMA_HOME/_templates/$profile.yaml" "$COLIMA_HOME/$profile/colima.yaml"
+        done
+    fi
+
     test ! -d ~/.local/bin && mkdir -vp ~/.local/bin
     find "$CLONE_DIR/bin/" -type f -print0 | while IFS= read -r -d '' source_file; do
         if [ -x "$source_file" ]; then

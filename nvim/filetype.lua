@@ -6,5 +6,7 @@ vim.filetype.add({
 		["%.functions"] = { "sh", { priority = 1 } },
 		["%.aliases"] = { "sh", { priority = 1 } },
 		["Brewfile.*"] = "ruby",
+		[".*/.ssh/config%.d/.*"] = "sshconfig",
+		[".*ssh_config.*"] = "sshconfig",
 	},
 })
