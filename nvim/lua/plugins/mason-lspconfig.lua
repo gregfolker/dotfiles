@@ -7,7 +7,6 @@ return {
 	opts = {
 		ensure_installed = {
 			"clangd",
-			"shellcheck",
 			"lua-language-server",
 		},
 	},
