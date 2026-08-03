@@ -69,6 +69,11 @@ function main() {
             }
         done
         ;;
+    *)
+        echo "Unknown command: $1"
+        usage
+        exit 1
+        ;;
     esac
 
     return 0
