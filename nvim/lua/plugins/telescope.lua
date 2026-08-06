@@ -16,7 +16,7 @@ return {
 			},
 			pickers = {
 				find_files = {
-					find_command = { "fd", "--type", "f", "-I", "--hidden", "--exclude", ".git" },
+					find_command = { "fd", "--type", "f", "-I", "--hidden", "--exclude", ".git", "--exclude", ".venv" },
 				},
 				live_grep = {
 					-- Ensure live_grep searches inside hidden files/folders as well
