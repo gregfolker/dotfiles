@@ -108,12 +108,8 @@ pip-selfcheck.json
 
 # Custom python interpreter
 .Python
-[Bb]in
-[Ii]nclude
-[Ll]ib
 [Ll]ib64
 [Ll]ocal
-[Ss]cripts
 
 # Visual Studio Code
 .vscode/*
