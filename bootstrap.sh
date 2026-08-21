@@ -256,22 +256,19 @@ function main() {
 
     echo "Bootstrapping dotfiles..."
 
-    echo "Installing Homebrew..."
-    install_homebrew
-
-    if command -v brew >/dev/null; then
-        brew config
-        echo "Installing packages..."
-        brew update && brew upgrade && brew install "${BREW_PKGS[@]}"
-    fi
-
     echo "Downloading dotfiles..."
     download_dotfiles
 
-    if command -v brew >/dev/null; then
-        trap "popd >/dev/null" EXIT
-        pushd "$CLONE_DIR" >/dev/null
-        if [ -z "$minimal" ]; then
+    trap "popd >/dev/null" EXIT
+    pushd "$CLONE_DIR" >/dev/null
+    if [ -z "$minimal" ]; then
+        echo "Installing Homebrew..."
+        install_homebrew
+
+        if command -v brew >/dev/null; then
+            brew config
+            echo "Installing packages..."
+            brew update && brew upgrade && brew install "${BREW_PKGS[@]}"
             if ! brew bundle check >/dev/null 2>&1; then
                 # TODO: The version of homebrew in GitHub actions encounters a circular dependency on
                 # libtiff and webp. Since we do not need these for anything, just force uninstall them
@@ -282,10 +279,11 @@ function main() {
                 brew uninstall --ignore-dependencies --force libtiff webp
                 echo "Installing goodies..."
                 brew bundle || true
-                install_rust
-                install_mise
             fi
         fi
+
+        install_rust
+        install_mise
     fi
 
     echo "Creating symlinks..."
