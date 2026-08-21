@@ -220,6 +220,16 @@ function install_rust() {
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain stable --no-modify-path
 }
 
+function install_mise() {
+    if command -v mise >/dev/null; then
+        echo "mise already installed, skipping..."
+        return 0
+    fi
+    # https://mise.jdx.dev/installing-mise.html
+    MISE_SHELL="$(basename "$SHELL")"
+    curl https://mise.run/"$MISE_SHELL" | sh
+}
+
 function main() {
     local minimal=
     while [[ $# -gt 0 && $1 =~ ^- && $1 != "--" ]]; do
@@ -273,6 +283,7 @@ function main() {
                 echo "Installing goodies..."
                 brew bundle || true
                 install_rust
+                install_mise
             fi
         fi
     fi
