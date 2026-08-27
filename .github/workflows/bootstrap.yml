@@ -11,19 +11,23 @@ jobs:
       - name: Run bootstrap.sh
         # yamllint disable rule:line-length
         run: |
-          uname -a
-          GIT_BRANCH=$GITHUB_REF_NAME bash <(curl -fsSfL "https://raw.githubusercontent.com/gregfolker/dotfiles/$GITHUB_SHA/bootstrap.sh")
+          GIT_BRANCH=$GITHUB_REF_NAME GIT_AUTHOR_NAME="GitHub Bot" GIT_AUTHOR_EMAIL="github-bot@noreply.com" \
+            bash <(curl -fsSfL "https://raw.githubusercontent.com/gregfolker/dotfiles/$GITHUB_SHA/bootstrap.sh")
         shell: bash
       - name: Verify symlinks
         run: |
-          dot check
-          git wtf -h
-          git setup-worktree -h
+          source ~/.env
+          cd ~/.config/mise
+          mise activate --shims
+          mise bootstrap dotfiles status --missing
         shell: bash
       - name: Install neovim plugins
         run: |
-          source ~/.env && env | sort
-          nvim --version
-          nvim --headless "+Lazy! sync" +qa
-          nvim --headless "+checkhealth" +qa
+          mise activate --shims
+          mise x -- nvim --headless "+Lazy! sync" +qa
+        shell: bash
+      - name: Verify neovim setup
+        run: |
+          mise activate --shims
+          mise x -- nvim --headless "+checkhealth" +qa
         shell: bash

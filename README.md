@@ -8,15 +8,14 @@ Personal dotfiles for Linux and macOS.
 bash <(curl https://raw.githubusercontent.com/gregfolker/dotfiles/main/bootstrap.sh -sSf)
 ```
 
-To choose where the dotfiles get cloned, prepend `CLONE_DIR` to the start of
-the command.
+This will prompt you for your Git user/email. If you do not want to be prompted
+(e.g., non-interactive environments), prepend `GIT_AUTHOR_NAME` and
+`GIT_AUTHOR_EMAIL` to the start of the command.
 
 ```console
-CLONE_DIR=/path/to/dotfiles bash <(curl https://raw.githubusercontent.com/gregfolker/dotfiles/main/bootstrap.sh -sSf)
+GIT_AUTHOR_NAME="Jane Doe" GIT_AUTHOR_EMAIL="jdoe@example.com" \
+    bash <(curl https://raw.githubusercontent/gregfolker/dotfiles/main/bootstrap.sh -sSf)
 ```
-
-The default location is `~/.dotfiles`. Add the `--help` flag to the above
-command to get more details about what will be installed on the host.
 
 > [!WARNING]
 > This is a destructive action. Please ensure files have been backed up prior

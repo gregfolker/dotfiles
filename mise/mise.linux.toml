@@ -1,0 +1,25 @@
+[bootstrap.packages]
+"apt:git" = "latest"
+"apt:ssh" = "latest"
+"apt:tree" = "latest"
+"apt:build-essential" = "latest"
+
+[bootstrap.mise_shell_activate]
+bash_profile = "shims"
+bashrc = "activate"
+
+[bootstrap.hooks.final]
+run = [
+    "curl -fsSL https://raw.githubusercontent.com/officialrajdeepsingh/nerd-fonts-installer/main/install.sh | bash -s -- JetBrainsMono",
+    "mise x -- go install github.com/tmuxpack/tpack/cmd/tpack@latest",
+]
+
+[dotfiles]
+"~/.bashrc/environment" = { block = '''
+test -r ~/.env && . ~/.env
+test -r ~/.aliases && . ~/.aliases
+test -r ~/.functions && . ~/.functions
+test -r ~/.cargo/env && . ~/.cargo/env
+
+eval "$(starship init bash)"
+''' }
