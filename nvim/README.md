@@ -39,7 +39,6 @@ as dependencies of other plugins.
 | [neogen](https://github.com/danymat/neogen)                                 | Generator for code annotations.                                                    |
 | [neogit](https://github.com/NeogitOrg/neogit)                               | A `git` interface inside `neovim`.                                                 |
 | [neoscroll](https://github.com/karb94/neoscroll.nvim)                       | Smooth scrolling.                                                                  |
-| [neovim-tips](https://github.com/saxon1964/neovim-tips)                     | Custom picker for `neovim` tips, tricks, and shortcuts.                            |
 | [nerdy](https://github.com/2KAbhishek/nerdy.nvim)                           | Search/insert nerdfont glyphs.                                                     |
 | [noice](https://github.com/folke/noice.nvim)                                | Clean UI for `messages`, `cmdline`, and the `popupmenu`.                           |
 | [nvim-surround](https://github.com/kylechui/nvim-surround)                  | Add/change/delete surrounding delimiter pairs and quotes.                          |
