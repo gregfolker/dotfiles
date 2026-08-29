@@ -14,43 +14,40 @@ run = "pre-commit run --all-files"
 
 [tasks."lint:md"]
 description = "Lint markdown files"
-sources = [
-    "**/*.md"
-]
+sources = ["**/*.md"]
 run = "prettier --check {{ task_source_files() | join(sep=' ' ) }}"
 
 [tasks."lint:sh"]
 description = "Lint shell scripts"
 sources = [
-    "**/*.sh",
-    ".env",
-    ".functions",
-    ".aliases",
-    "bin/dot",
-    "bin/git-setup-worktree"
+  "**/*.sh",
+  ".env",
+  ".functions",
+  ".aliases",
+  "bin/dot",
+  "bin/git-setup-worktree",
 ]
 run = [
-    "shfmt --diff {{ task_source_files() | join(sep=' ') }}",
-    "shellcheck {{ task_source_files() | join(sep=' ') }}"
+  "shfmt --diff {{ task_source_files() | join(sep=' ') }}",
+  "shellcheck {{ task_source_files() | join(sep=' ') }}",
 ]
 
 [tasks."lint:yaml"]
 description = "Lint yaml files"
-sources = [
-    "**/*.yml",
-    "**/*.yaml"
-]
+sources = ["**/*.yml", "**/*.yaml"]
 run = [
-    "yamllint --list-files --strict {{ task_source_files() | join(sep=' ') }}",
-    "yamlfmt {{ task_source_files() | join(sep=' ') }}"
+  "yamllint --list-files --strict {{ task_source_files() | join(sep=' ') }}",
+  "yamlfmt {{ task_source_files() | join(sep=' ') }}",
 ]
 
 [tasks."lint:lua"]
 description = "Lint lua files"
-sources = [
-    "**/*.lua"
-]
+sources = ["**/*.lua"]
 run = "stylua --check {{ task_source_files() | join(sep=' ') }}"
+
+[tasks."lint:mise"]
+description = "Lint mise.toml files"
+run = "mise fmt --all"
 
 [tasks.lint]
 description = "Run linters"
