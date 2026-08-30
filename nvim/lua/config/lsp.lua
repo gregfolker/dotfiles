@@ -1,6 +1,1 @@
-vim.lsp.config("dts-lsp", {
-	cmd = { "dts-lsp" },
-	filetypes = { "dts" },
-})
-
-vim.lsp.enable({ "dts-lsp" })
+vim.lsp.enable({ "dts_lsp" })
