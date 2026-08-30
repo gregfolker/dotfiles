@@ -22,6 +22,7 @@ dotfiles.default_mode = "symlink"
 neovim = "0.12"
 bat = "latest"
 bat-extras = "latest"
+clang = "latest"
 delta = "latest"
 fd = "latest"
 fzf = "latest"
@@ -45,10 +46,22 @@ zig = "latest"
 
 # Language Servers
 "cargo:asm-lsp" = "latest"
-clang = "latest"
 harper-ls = "latest"
 "npm:devicetree-language-server" = { version = "latest", depends = ["node"] }
 lua-language-server = "latest"
 rust-analyzer = "latest"
 ty = "latest"
 zls = "latest"
+
+# Linters
+"npm:dts-linter" = { version = "latest", depends = ["node"] }
+shellcheck = "latest"
+yamllint = "latest"
+
+# Formatters
+clang-format = "latest"
+"go:github.com/reteps/dockerfmt" = { version = "latest", depends = ["go"] }
+"pipx:cmakelang" = { version = "latest", depends = "pipx" }
+ruff = "latest"
+shfmt = "latest"
+stylua = "latest"

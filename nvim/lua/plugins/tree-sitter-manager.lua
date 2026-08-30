@@ -14,6 +14,7 @@ return {
 
 			ensure_installed = {
 				"c",
+				"devicetree",
 				"python",
 				"bash",
 				"lua",
