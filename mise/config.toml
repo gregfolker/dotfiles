@@ -22,6 +22,7 @@ dotfiles.default_mode = "symlink"
 neovim = "0.12"
 bat = "latest"
 bat-extras = "latest"
+cargo-binstall = "latest"
 clang = "latest"
 delta = "latest"
 fd = "latest"
@@ -45,7 +46,7 @@ yq = "4"
 zig = "latest"
 
 # Language Servers
-"cargo:asm-lsp" = "latest"
+"cargo:asm-lsp" = { version = "latest", depends = ["cargo-binstall"] }
 harper-ls = "latest"
 "npm:devicetree-language-server" = { version = "latest", depends = ["node"] }
 lua-language-server = "latest"
