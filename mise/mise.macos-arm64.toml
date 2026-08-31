@@ -19,9 +19,9 @@ zshrc = "activate"
 
 [dotfiles]
 "~/.config/ghostty" = "~/.dotfiles/ghostty"
-"~/.colima/_templates/default.yaml" = { source = "~/.dotfiles/colima/default.yaml", mode = "copy" }
-"~/.colima/_templates/dev.yaml" = { source = "~/.dotfiles/colima/dev/darwin-arm64.yaml", mode = "copy" }
-"~/.ssh/conf.d/colima" = "~/.colima/ssh_config"
+"~/.config/colima/_templates/default.yaml" = { source = "~/.dotfiles/colima/default.yaml", mode = "copy" }
+"~/.config/colima/_templates/dev.yaml" = { source = "~/.dotfiles/colima/dev/darwin-arm64.yaml", mode = "copy" }
+"~/.ssh/conf.d/colima" = "~/.config/colima/ssh_config"
 "~/.zshrc/environment" = { block = '''
 test -r ~/.env && . ~/.env
 test -r ~/.aliases && . ~/.aliases
