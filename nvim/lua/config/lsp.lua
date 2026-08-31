@@ -1,5 +1,11 @@
 -- Manually enable custom LSPs
 vim.lsp.enable({
-	-- https://github.com/kylebonnici/dts-lsp
+	-- Devicetree
 	"dts-lsp",
+	-- Rust
+	"rust-analyzer",
+	-- Python
+	"ty",
+	-- Zig
+	"zls",
 })
