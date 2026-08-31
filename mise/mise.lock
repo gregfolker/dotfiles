@@ -868,6 +868,7 @@ url = "https://github.com/eth-p/bat-extras/releases/download/v2024.08.24/bat-ext
 url_api = "https://api.github.com/repos/eth-p/bat-extras/releases/assets/188090138"
 
 [tools.bat-extras."platforms.macos-arm64"]
+checksum = "blake3:7981bdbfbef5c00fde58158e5f2e48bdf5e60da8286d5ed03ee7f01ab740a547"
 url = "https://github.com/eth-p/bat-extras/releases/download/v2024.08.24/bat-extras-2024.08.24.zip"
 url_api = "https://api.github.com/repos/eth-p/bat-extras/releases/assets/188090138"
 
@@ -1729,6 +1730,11 @@ checksum = "sha256:8550a00fcf027335e42c5e2cd553b88e98845408cb1880b3e3d1860caf46d
 url = "https://github.com/apple/pkl/releases/download/0.32.1/pkl-windows-amd64.exe"
 url_api = "https://api.github.com/repos/apple/pkl/releases/assets/487426668"
 
+[[tools.prettier]]
+version = "3.9.4"
+backend = "npm:prettier"
+specifiers = ["latest"]
+
 [[tools.python]]
 version = "3.12.14"
 backend = "core:python"
@@ -2355,6 +2361,7 @@ url = "https://ziglang.org/download/0.16.0/zig-x86_64-linux-0.16.0.tar.xz"
 [tools.zig."platforms.macos-arm64"]
 checksum = "sha256:b23d70deaa879b5c2d486ed3316f7eaa53e84acf6fc9cc747de152450d401489"
 url = "https://ziglang.org/download/0.16.0/zig-aarch64-macos-0.16.0.tar.xz"
+provenance = "minisign"
 
 [tools.zig."platforms.macos-x64"]
 checksum = "sha256:0387557ed1877bc6a2e1802c8391953baddba76081876301c522f52977b52ba7"

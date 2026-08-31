@@ -2,12 +2,17 @@ return {
 	"stevearc/conform.nvim",
 	opts = {
 		formatters_by_ft = {
+			c = { "clang-format" },
+			cmake = { "cmake_format" },
+			dts = { "dts_linter" },
+			dockerfile = { "dockerfmt" },
+			pkl = { "pkl" },
 			lua = { "stylua" },
+			python = { "ruff_format" },
 			sh = { "shfmt" },
 			bash = { "shfmt" },
 			yaml = { "yamlfmt" },
 			markdown = { "prettier" },
-			dts = { "dts_linter" },
 			["_"] = { "trim_whitespace" },
 		},
 		format_on_save = {

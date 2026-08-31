@@ -61,7 +61,8 @@ yamllint = "latest"
 # Formatters
 clang-format = "latest"
 "go:github.com/reteps/dockerfmt" = { version = "latest", depends = ["go"] }
-"pipx:cmakelang" = { version = "latest", depends = "pipx" }
+"pipx:cmakelang" = { version = "latest", depends = "uv" }
+prettier = "latest"
 ruff = "latest"
 shfmt = "latest"
 stylua = "latest"
