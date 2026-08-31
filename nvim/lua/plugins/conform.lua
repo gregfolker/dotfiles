@@ -3,7 +3,6 @@ return {
 	opts = {
 		formatters_by_ft = {
 			c = { "clang-format" },
-			cmake = { "cmake_format" },
 			dts = { "dts_linter" },
 			dockerfile = { "dockerfmt" },
 			pkl = { "pkl" },
