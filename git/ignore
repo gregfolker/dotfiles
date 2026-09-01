@@ -225,3 +225,6 @@ mise/*.local.toml
 *.msm
 *.msp
 *.txz
+
+# gitlab-ci-local directory
+gitlab-ci-local
