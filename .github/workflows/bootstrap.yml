@@ -1,6 +1,9 @@
 ---
 name: bootstrap
 on: [push]  # yamllint disable-line rule:truthy
+env:
+  MISE_LOCKED: true
+  GITHUB_TOKEN: ${{ github.token }}
 jobs:
   bootstrap:
     runs-on: ${{ matrix.os }}
