@@ -113,6 +113,9 @@ function main() {
     # mise takes over from here.
     mise bootstrap --yes
 
+    # install neovim plugins
+    mise x -- nvim --headless "+Lazy! sync" +qa
+
     echo "Bootstrap complete. Re-load your environment for changes to take effect."
 }
 

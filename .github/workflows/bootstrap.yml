@@ -21,11 +21,6 @@ jobs:
           mise activate --shims
           mise bootstrap dotfiles status --missing
         shell: bash
-      - name: Install neovim plugins
-        run: |
-          mise activate --shims
-          mise x -- nvim --headless "+Lazy! sync" +qa
-        shell: bash
       - name: Verify neovim setup
         run: |
           mise activate --shims
