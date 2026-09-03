@@ -57,6 +57,7 @@ zls = "latest"
 # Linters
 "npm:dts-linter" = { version = "latest", depends = ["node"] }
 shellcheck = "latest"
+rumdl = "latest"
 yamllint = "latest"
 
 # Formatters
