@@ -1,5 +1,7 @@
 ---
 name: Run linters
+env:
+  MISE_IGNORED_CONFIG_PATHS: ${{ github.workspace }}/mise
 on:  # yamllint disable-line rule:truthy
   pull_request:
     branches:

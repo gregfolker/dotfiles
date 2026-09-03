@@ -159,7 +159,7 @@
     autocorrect = prompt
 
 [include]
-    path = ~/.gitconfig.user
+    path = ~/.config/git/identity
 
 [init]
     defaultBranch = main

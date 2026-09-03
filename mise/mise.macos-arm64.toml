@@ -1,0 +1,35 @@
+[bootstrap.packages]
+"brew:docker" = "latest"
+"brew:colima" = "latest"
+"brew:git" = "latest"
+"brew:bash" = "latest"
+"brew:mosh" = "latest"
+"brew:tree" = "latest"
+"brew:dtc" = "latest"
+"brew:tpack" = "latest"
+"brew:qemu" = "latest"
+"brew-cask:ghostty" = "latest"
+"brew-cask:google-chrome" = "latest"
+"brew-cask:visual-studio-code" = "latest"
+"brew-cask:font-jetbrains-mono" = "latest"
+
+[bootstrap.mise_shell_activate]
+zprofile = "shims"
+zshrc = "activate"
+
+[dotfiles]
+"~/.config/ghostty" = "~/.dotfiles/ghostty"
+"~/.config/colima/_templates/default.yaml" = { source = "~/.dotfiles/colima/default.yaml", mode = "copy" }
+"~/.config/colima/_templates/dev.yaml" = { source = "~/.dotfiles/colima/dev/darwin-arm64.yaml", mode = "copy" }
+"~/.ssh/conf.d/colima" = "~/.config/colima/ssh_config"
+"~/.zshrc/environment" = { block = '''
+test -r ~/.env && . ~/.env
+test -r ~/.aliases && . ~/.aliases
+test -r ~/.functions && . ~/.functions
+test -r ~/.cargo/env && . ~/.cargo/env
+
+# enable autocompletion for git commands
+autoload -Uz compinit && compinit
+
+eval "$(starship init zsh)"
+''' }

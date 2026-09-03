@@ -1,0 +1,70 @@
+[settings]
+auto_env = true
+lockfile = true
+dotfiles.root = "~/.dotfiles"
+dotfiles.default_mode = "symlink"
+
+[dotfiles]
+"~/.env" = {}
+"~/.aliases" = {}
+"~/.functions" = {}
+"~/.tmux.conf" = {}
+"~/.virc" = {}
+"~/.vimrc" = {}
+"~/.config/nvim" = "~/.dotfiles/nvim"
+"~/.config/git/config" = "~/.dotfiles/git/config"
+"~/.config/git/ignore" = "~/.dotfiles/git/ignore"
+"~/.config/git/identity" = { source = "~/.dotfiles/git/identity.tmpl", mode = "template" }
+"~/.ssh/config" = "~/.dotfiles/ssh/ssh_config"
+"~/.local/bin" = { source = "~/.dotfiles/bin", mode = "symlink-each" }
+
+[tools]
+neovim = "0.12"
+bat = "latest"
+bat-extras = "latest"
+cargo-binstall = "latest"
+clang = "latest"
+delta = "latest"
+fd = "latest"
+fzf = "latest"
+go = "1"
+hk = "1.56.1"
+jq = "1"
+lua = "5"
+mosh = "latest"
+node = "26"
+pipx = "1"
+pkl = "latest"
+python = "3"
+ripgrep = "latest"
+ruby = "4"
+rust = "1"
+starship = "1"
+tmux = "3"
+tree-sitter = "latest"
+uv = "latest"
+yq = "4"
+zig = "latest"
+
+# Language Servers
+"cargo:asm-lsp" = { version = "latest", depends = ["cargo-binstall"] }
+harper-ls = "latest"
+"npm:devicetree-language-server" = { version = "latest", depends = ["node"] }
+lua-language-server = "latest"
+rust-analyzer = "latest"
+ty = "latest"
+zls = "latest"
+
+# Linters
+"npm:dts-linter" = { version = "latest", depends = ["node"] }
+shellcheck = "latest"
+rumdl = "latest"
+yamllint = "latest"
+
+# Formatters
+clang-format = "latest"
+"go:github.com/reteps/dockerfmt" = { version = "latest", depends = ["go"] }
+prettier = "latest"
+ruff = "latest"
+shfmt = "latest"
+stylua = "latest"
