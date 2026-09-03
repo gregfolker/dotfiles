@@ -111,7 +111,7 @@ function main() {
     fi
 
     # mise takes over from here.
-    mise bootstrap --yes
+    mise bootstrap --force-dotfiles --yes
 
     # install neovim plugins
     mise x -- nvim --headless "+Lazy! sync" +qa
